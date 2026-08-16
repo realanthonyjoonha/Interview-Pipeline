@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd" xmlns:podcast="https://podcastindex.org/namespace/1.0">
+  <channel>
+    <title>Fixture Feed</title>
+    <item>
+      <title>Ryan Guest – Long interview about models</title>
+      <link>https://example.test/p/ryan-guest</link>
+      <guid>example-ryan-guest</guid>
+      <pubDate>Tue, 11 Aug 2026 16:31:23 GMT</pubDate>
+      <itunes:duration>7952</itunes:duration>
+      <description>A long interview.</description>
+    </item>
+    <item>
+      <title>8 Predictions for the Era of Continual Learning</title>
+      <link>https://example.test/p/predictions</link>
+      <guid>example-predictions</guid>
+      <pubDate>Fri, 07 Aug 2026 17:17:40 GMT</pubDate>
+      <itunes:duration>517</itunes:duration>
+      <description>An audio version of my blog post.</description>
+    </item>
+  </channel>
+</rss>
