@@ -1,0 +1,39 @@
+{
+  "id": "no_priors/2026-08-13-what-chess-com-teaches-us-about-superhuman-capabilities-with-ceo-erik-allebest",
+  "show_id": "no_priors",
+  "show_name": "No Priors",
+  "title": "What Chess.com Teaches US About Superhuman Capabilities, with CEO Erik Allebest",
+  "published": "2026-08-13",
+  "url": "",
+  "guid": "2f8edaf4-9698-11f1-bdc1-eb068382bf86",
+  "duration_seconds": 2767,
+  "duration_minutes": 46.1,
+  "watched_people": [],
+  "filter": {
+    "matched": true,
+    "reasons": [
+      "No Priors guest sit"
+    ],
+    "guest_hint": "CEO Erik Allebest"
+  },
+  "transcript": {
+    "status": "found",
+    "source_url": "https://traffic.megaphone.fm/PDP3695187109.mp3",
+    "source_kind": "audio_whisper",
+    "detail": "Local whisper.cpp transcript from the RSS audio enclosure. Not official-page quotes.",
+    "character_count": 46115,
+    "derived_from_audio": true,
+    "path": "data/transcripts/no_priors/2026-08-13-what-chess-com-teaches-us-about-superhuman-capabilities-with-ceo-erik-allebest.md"
+  },
+  "paths": {
+    "episode": "data/episodes/no_priors/2026-08-13-what-chess-com-teaches-us-about-superhuman-capabilities-with-ceo-erik-allebest.json",
+    "transcript": "data/transcripts/no_priors/2026-08-13-what-chess-com-teaches-us-about-superhuman-capabilities-with-ceo-erik-allebest.md",
+    "report": "data/reports/no_priors/2026-08-13-what-chess-com-teaches-us-about-superhuman-capabilities-with-ceo-erik-allebest.md",
+    "audio": "data/audio/no_priors/2026-08-13-what-chess-com-teaches-us-about-superhuman-capabilities-with-ceo-erik-allebest.mp3"
+  },
+  "report": {
+    "written": true,
+    "path": "data/reports/no_priors/2026-08-13-what-chess-com-teaches-us-about-superhuman-capabilities-with-ceo-erik-allebest.md",
+    "reason": null
+  }
+}

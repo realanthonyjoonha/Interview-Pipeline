@@ -1,0 +1,37 @@
+{
+  "id": "dwarkesh/2026-07-10-adam-brown-a-deep-but-accessible-introduction-to-general-relativity",
+  "show_id": "dwarkesh",
+  "show_name": "Dwarkesh Podcast",
+  "title": "Adam Brown – A deep but accessible introduction to general relativity",
+  "published": "2026-07-10",
+  "url": "https://www.dwarkesh.com/p/adam-brown-gr",
+  "guid": "substack:post:206445844",
+  "duration_seconds": 5904,
+  "duration_minutes": 98.4,
+  "watched_people": [],
+  "filter": {
+    "matched": true,
+    "reasons": [
+      "Dwarkesh interview"
+    ],
+    "guest_hint": "Adam Brown"
+  },
+  "transcript": {
+    "status": "found",
+    "source_url": "https://www.dwarkesh.com/p/adam-brown-gr",
+    "source_kind": "substack_body",
+    "detail": "Official transcript section on the public Substack post",
+    "character_count": 86193,
+    "path": "data/transcripts/dwarkesh/2026-07-10-adam-brown-a-deep-but-accessible-introduction-to-general-relativity.md"
+  },
+  "paths": {
+    "episode": "data/episodes/dwarkesh/2026-07-10-adam-brown-a-deep-but-accessible-introduction-to-general-relativity.json",
+    "transcript": "data/transcripts/dwarkesh/2026-07-10-adam-brown-a-deep-but-accessible-introduction-to-general-relativity.md",
+    "report": "data/reports/dwarkesh/2026-07-10-adam-brown-a-deep-but-accessible-introduction-to-general-relativity.md"
+  },
+  "report": {
+    "written": true,
+    "path": "data/reports/dwarkesh/2026-07-10-adam-brown-a-deep-but-accessible-introduction-to-general-relativity.md",
+    "reason": null
+  }
+}

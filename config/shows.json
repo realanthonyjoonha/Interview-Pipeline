@@ -1,0 +1,241 @@
+{
+  "notes": "CORE shows are enabled. Secondary shows are optional and off by default. Do not add names to watched_people. A 20+ minute sit by Dylan Patel is always in-scope.",
+  "watched_people": [
+    "Sam Altman",
+    "Dario Amodei",
+    "Demis Hassabis",
+    "Elon Musk",
+    "Satya Nadella",
+    "Sundar Pichai",
+    "Mark Zuckerberg",
+    "Jensen Huang",
+    "Ilya Sutskever",
+    "Andrej Karpathy",
+    "Dylan Patel"
+  ],
+  "defaults": {
+    "min_minutes": 20,
+    "user_agent": "InterviewPipeline/0.1 (+https://github.com/realanthonyjoonha/Interview-Pipeline; research notes)"
+  },
+  "shows": [
+    {
+      "id": "dwarkesh",
+      "name": "Dwarkesh Podcast",
+      "tier": "core",
+      "enabled": true,
+      "feed_url": "https://api.substack.com/feed/podcast/69345.rss",
+      "site": "https://www.dwarkesh.com/podcast",
+      "transcript": "substack",
+      "filter": "dwarkesh",
+      "hosts": ["Dwarkesh Patel", "Dwarkesh"],
+      "notes": "Interviews only; skip sub-20 min essays."
+    },
+    {
+      "id": "cheeky_pint",
+      "name": "Cheeky Pint",
+      "tier": "core",
+      "enabled": true,
+      "feed_url": "https://feeds.transistor.fm/cheeky-pint-with-john-collison",
+      "site": "https://cheekypint.transistor.fm/",
+      "transcript": "rss_podcast_transcript",
+      "filter": "cheeky_pint",
+      "hosts": ["John Collison"],
+      "notes": "Founder sits. Cadence has been quiet since 27 Apr 2026."
+    },
+    {
+      "id": "no_priors",
+      "name": "No Priors",
+      "tier": "core",
+      "enabled": true,
+      "feed_url": "https://feeds.megaphone.fm/nopriors",
+      "site": "https://www.no-priors.com/",
+      "transcript": "none_known",
+      "filter": "no_priors",
+      "hosts": ["Sarah Guo", "Elad Gil", "Sarah", "Elad"],
+      "notes": "Guest sits or 20+; skip host-only under 20. Official text is rare; use audio fallback."
+    },
+    {
+      "id": "bg2",
+      "name": "BG2",
+      "tier": "core",
+      "enabled": true,
+      "feed_url": "https://anchor.fm/s/f06c2370/podcast/rss",
+      "site": "https://www.bg2pod.com/",
+      "transcript": "none_known",
+      "filter": "bg2",
+      "hosts": ["Brad Gerstner", "Bill Gurley", "Brad", "Bill"],
+      "notes": "Irregular. Length bar still applies. Official text is rare; use audio fallback."
+    },
+    {
+      "id": "big_technology",
+      "name": "Big Technology",
+      "tier": "core",
+      "enabled": true,
+      "feed_url": "https://feeds.megaphone.fm/LI3617121267",
+      "site": "https://www.bigtechnology.com/",
+      "transcript": "none_known",
+      "filter": "big_technology",
+      "hosts": ["Alex Kantrowitz"],
+      "notes": "Named guest interviews only; skip news roundtables."
+    },
+    {
+      "id": "invest_like_the_best",
+      "name": "Invest Like the Best",
+      "tier": "core",
+      "enabled": true,
+      "feed_url": "https://feeds.megaphone.fm/CLS2859450455",
+      "site": "https://colossus.com/",
+      "transcript": "colossus",
+      "filter": "iltb",
+      "hosts": ["Patrick O'Shaughnessy", "Patrick"],
+      "notes": "AI / infra / chip / lab guests only. Do not scrape Colossus; audio transcription is the fallback."
+    },
+    {
+      "id": "semianalysis_weekly",
+      "name": "SemiAnalysis Weekly",
+      "tier": "core",
+      "enabled": true,
+      "feed_url": "https://anchor.fm/s/10fbee758/podcast/rss",
+      "site": "https://www.semianalysis.com/",
+      "transcript": "none_known",
+      "filter": "semianalysis",
+      "hosts": ["Jordan Nanos", "Doug O'Laughlin"],
+      "notes": "Technical semis/infra staff analysis, not a figurehead hunt ground. Short teardown exception: China silicon, InferenceX, or a named teardown. Official text is rare; use audio fallback."
+    },
+    {
+      "id": "latent_space",
+      "name": "Latent Space",
+      "tier": "core",
+      "enabled": true,
+      "feed_url": "https://api.substack.com/feed/podcast/1084089.rss",
+      "site": "https://www.latent.space/",
+      "transcript": "substack",
+      "filter": "latent_space",
+      "hosts": ["swyx", "Alessio", "Shawn Wang"],
+      "notes": "Long interviews only; ignore AINews shorts."
+    },
+    {
+      "id": "pragmatic_engineer",
+      "name": "The Pragmatic Engineer",
+      "tier": "core",
+      "enabled": true,
+      "feed_url": "https://api.substack.com/feed/podcast/458709.rss",
+      "site": "https://newsletter.pragmaticengineer.com/podcast",
+      "transcript": "substack",
+      "filter": "pragmatic_engineer",
+      "hosts": ["Gergely Orosz"],
+      "notes": "Enterprise / dev-tool adoption interviews."
+    },
+    {
+      "id": "lennys",
+      "name": "Lenny's Podcast",
+      "tier": "core",
+      "enabled": true,
+      "feed_url": "https://api.substack.com/feed/podcast/10845.rss",
+      "site": "https://www.lennysnewsletter.com/podcast",
+      "transcript": "substack",
+      "filter": "lennys",
+      "hosts": ["Lenny Rachitsky", "Lenny"],
+      "notes": "Only when the guest/title is AI-product. Many transcripts are paid-only; mark paywalled instead of bypassing."
+    },
+    {
+      "id": "lex_fridman",
+      "name": "Lex Fridman Podcast",
+      "tier": "secondary",
+      "enabled": false,
+      "feed_url": "https://lexfridman.com/feed/podcast/",
+      "site": "https://lexfridman.com/",
+      "transcript": "lex",
+      "filter": "length_only",
+      "notes": "Optional. Official transcripts at {slug}-transcript."
+    },
+    {
+      "id": "decoder",
+      "name": "Decoder",
+      "tier": "secondary",
+      "enabled": false,
+      "feed_url": "https://feeds.megaphone.fm/recodedecode",
+      "site": "https://www.theverge.com/decoder-podcast-with-nilay-patel",
+      "transcript": "none_known",
+      "filter": "length_only",
+      "notes": "Optional. Fetch an official Verge transcript if one is linked; otherwise mark missing."
+    },
+    {
+      "id": "conversations_with_tyler",
+      "name": "Conversations with Tyler",
+      "tier": "secondary",
+      "enabled": false,
+      "feed_url": "https://rss.libsyn.com/shows/137081/destinations/850607.xml",
+      "site": "https://conversationswithtyler.com/",
+      "transcript": "none_known",
+      "filter": "length_only",
+      "notes": "Optional transcript source when an official page is public."
+    },
+    {
+      "id": "possible",
+      "name": "Possible",
+      "tier": "secondary",
+      "enabled": false,
+      "feed_url": "",
+      "site": "",
+      "transcript": "none_known",
+      "filter": "length_only",
+      "notes": "Optional. Add an official RSS URL before enabling."
+    },
+    {
+      "id": "training_data",
+      "name": "Training Data",
+      "tier": "secondary",
+      "enabled": false,
+      "feed_url": "",
+      "site": "",
+      "transcript": "none_known",
+      "filter": "length_only",
+      "notes": "Optional. Add an official RSS URL before enabling."
+    },
+    {
+      "id": "twenty_vc",
+      "name": "20VC",
+      "tier": "secondary",
+      "enabled": false,
+      "feed_url": "",
+      "site": "",
+      "transcript": "none_known",
+      "filter": "length_only",
+      "notes": "Optional. Guest interviews only once a feed is configured."
+    },
+    {
+      "id": "hard_fork",
+      "name": "Hard Fork",
+      "tier": "secondary",
+      "enabled": false,
+      "feed_url": "",
+      "site": "",
+      "transcript": "none_known",
+      "filter": "length_only",
+      "notes": "Optional. Add an official RSS URL before enabling."
+    },
+    {
+      "id": "practical_ai",
+      "name": "Practical AI",
+      "tier": "secondary",
+      "enabled": false,
+      "feed_url": "",
+      "site": "",
+      "transcript": "none_known",
+      "filter": "length_only",
+      "notes": "Optional. Add an official RSS URL before enabling."
+    },
+    {
+      "id": "stratechery_interview",
+      "name": "Stratechery Interview",
+      "tier": "secondary",
+      "enabled": false,
+      "feed_url": "",
+      "site": "https://stratechery.com/",
+      "transcript": "none_known",
+      "filter": "length_only",
+      "notes": "Optional. Interview episodes only; likely paywalled."
+    }
+  ]
+}

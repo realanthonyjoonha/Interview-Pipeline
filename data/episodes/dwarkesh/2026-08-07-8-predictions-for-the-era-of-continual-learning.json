@@ -1,0 +1,24 @@
+{
+  "id": "dwarkesh/2026-08-07-8-predictions-for-the-era-of-continual-learning",
+  "show_id": "dwarkesh",
+  "show_name": "Dwarkesh Podcast",
+  "title": "8 Predictions for the Era of Continual Learning",
+  "published": "2026-08-07",
+  "url": "https://www.dwarkesh.com/p/era-of-continual-learning",
+  "guid": "substack:post:210233020",
+  "duration_seconds": 517,
+  "duration_minutes": 8.6,
+  "watched_people": [],
+  "filter": {
+    "matched": false,
+    "reasons": [
+      "skip sub-20 min Dwarkesh essay/short"
+    ],
+    "guest_hint": null
+  },
+  "paths": {
+    "episode": "data/episodes/dwarkesh/2026-08-07-8-predictions-for-the-era-of-continual-learning.json",
+    "transcript": "data/transcripts/dwarkesh/2026-08-07-8-predictions-for-the-era-of-continual-learning.md",
+    "report": "data/reports/dwarkesh/2026-08-07-8-predictions-for-the-era-of-continual-learning.md"
+  }
+}

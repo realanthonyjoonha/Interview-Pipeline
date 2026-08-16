@@ -1,0 +1,37 @@
+{
+  "id": "cheeky_pint/2026-04-21-the-economics-and-trends-of-the-restaurant-industry-with-tony-xu-of-doordash",
+  "show_id": "cheeky_pint",
+  "show_name": "Cheeky Pint",
+  "title": "The economics and trends of the restaurant industry, with Tony Xu of DoorDash",
+  "published": "2026-04-21",
+  "url": "https://share.transistor.fm/s/05c27878",
+  "guid": "2cdb62ce-6333-4865-a4db-036065676a59",
+  "duration_seconds": 4856,
+  "duration_minutes": 80.9,
+  "watched_people": [],
+  "filter": {
+    "matched": true,
+    "reasons": [
+      "Cheeky Pint founder sit"
+    ],
+    "guest_hint": "Tony Xu"
+  },
+  "transcript": {
+    "status": "found",
+    "source_url": "https://share.transistor.fm/s/05c27878/transcript.txt",
+    "source_kind": "rss_transcript",
+    "detail": "Official podcast:transcript from the show RSS feed",
+    "character_count": 84727,
+    "path": "data/transcripts/cheeky_pint/2026-04-21-the-economics-and-trends-of-the-restaurant-industry-with-tony-xu-of-doordash.md"
+  },
+  "paths": {
+    "episode": "data/episodes/cheeky_pint/2026-04-21-the-economics-and-trends-of-the-restaurant-industry-with-tony-xu-of-doordash.json",
+    "transcript": "data/transcripts/cheeky_pint/2026-04-21-the-economics-and-trends-of-the-restaurant-industry-with-tony-xu-of-doordash.md",
+    "report": "data/reports/cheeky_pint/2026-04-21-the-economics-and-trends-of-the-restaurant-industry-with-tony-xu-of-doordash.md"
+  },
+  "report": {
+    "written": true,
+    "path": "data/reports/cheeky_pint/2026-04-21-the-economics-and-trends-of-the-restaurant-industry-with-tony-xu-of-doordash.md",
+    "reason": null
+  }
+}

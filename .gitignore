@@ -1,0 +1,15 @@
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.venv/
+venv/
+.env
+.DS_Store
+data/cache/
+data/audio/*
+!data/audio/.gitkeep
+tools/whisper/*.bin
+tools/whisper/whisper-cli
+tools/whisper/main
+tools/whisper/*.tar.gz

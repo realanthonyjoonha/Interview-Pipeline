@@ -1,0 +1,24 @@
+{
+  "id": "dwarkesh/2026-08-03-why-smarter-ai-models-could-drive-up-compute-prices-10x",
+  "show_id": "dwarkesh",
+  "show_name": "Dwarkesh Podcast",
+  "title": "Why smarter AI models could drive up compute prices 10x",
+  "published": "2026-08-03",
+  "url": "https://www.dwarkesh.com/p/why-compute-might-get-10x-more-expensive-video",
+  "guid": "substack:post:209664458",
+  "duration_seconds": 678,
+  "duration_minutes": 11.3,
+  "watched_people": [],
+  "filter": {
+    "matched": false,
+    "reasons": [
+      "skip sub-20 min Dwarkesh essay/short"
+    ],
+    "guest_hint": null
+  },
+  "paths": {
+    "episode": "data/episodes/dwarkesh/2026-08-03-why-smarter-ai-models-could-drive-up-compute-prices-10x.json",
+    "transcript": "data/transcripts/dwarkesh/2026-08-03-why-smarter-ai-models-could-drive-up-compute-prices-10x.md",
+    "report": "data/reports/dwarkesh/2026-08-03-why-smarter-ai-models-could-drive-up-compute-prices-10x.md"
+  }
+}

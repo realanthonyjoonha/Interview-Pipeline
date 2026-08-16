@@ -1,0 +1,37 @@
+{
+  "id": "latent_space/2026-08-03-the-inference-engineering-masterclass-philip-kiely-ali-taha-baseten",
+  "show_id": "latent_space",
+  "show_name": "Latent Space",
+  "title": "The Inference Engineering Masterclass — Philip Kiely & Ali Taha, Baseten",
+  "published": "2026-08-03",
+  "url": "https://www.latent.space/p/inference-eng",
+  "guid": "substack:post:209198968",
+  "duration_seconds": 6089,
+  "duration_minutes": 101.5,
+  "watched_people": [],
+  "filter": {
+    "matched": true,
+    "reasons": [
+      "Latent Space long interview"
+    ],
+    "guest_hint": "The Inference Engineering Masterclass"
+  },
+  "transcript": {
+    "status": "found",
+    "source_url": "https://www.latent.space/p/inference-eng",
+    "source_kind": "substack_body",
+    "detail": "Official transcript section on the public Substack post",
+    "character_count": 122039,
+    "path": "data/transcripts/latent_space/2026-08-03-the-inference-engineering-masterclass-philip-kiely-ali-taha-baseten.md"
+  },
+  "paths": {
+    "episode": "data/episodes/latent_space/2026-08-03-the-inference-engineering-masterclass-philip-kiely-ali-taha-baseten.json",
+    "transcript": "data/transcripts/latent_space/2026-08-03-the-inference-engineering-masterclass-philip-kiely-ali-taha-baseten.md",
+    "report": "data/reports/latent_space/2026-08-03-the-inference-engineering-masterclass-philip-kiely-ali-taha-baseten.md"
+  },
+  "report": {
+    "written": true,
+    "path": "data/reports/latent_space/2026-08-03-the-inference-engineering-masterclass-philip-kiely-ali-taha-baseten.md",
+    "reason": null
+  }
+}
