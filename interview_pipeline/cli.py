@@ -12,8 +12,8 @@ from interview_pipeline.filters import decide
 from interview_pipeline.models import Episode, TranscriptResult, episode_record
 from interview_pipeline.paths import repo_root
 from interview_pipeline.reports import write_report
+from interview_pipeline.resolve import resolve_transcript
 from interview_pipeline.store import episode_paths, write_json, write_scan_summary, write_text
-from interview_pipeline.transcripts import fetch_official_transcript
 
 
 def main(argv: list[str] | None = None) -> int:
@@ -30,8 +30,11 @@ def main(argv: list[str] | None = None) -> int:
     scan.add_argument("--since", type=int, default=21, help="Only episodes published in the last N days (0 = all)")
     scan.add_argument("--max-matches", type=int, default=3, help="Max matching episodes to process per show")
     scan.add_argument("--skip-transcripts", action="store_true")
+    scan.add_argument("--skip-audio", action="store_true", help="Do not fall back to local audio transcription")
     scan.add_argument("--no-report", action="store_true")
     scan.add_argument("--include-disabled", action="store_true")
+    scan.add_argument("--whisper-bin", default=None)
+    scan.add_argument("--whisper-model", default=None)
     scan.add_argument("--root", type=Path, default=None)
 
     report = sub.add_parser("report", help="Write a report from a local official transcript file")
@@ -157,10 +160,22 @@ def _cmd_scan(args: argparse.Namespace) -> int:
             transcript = None
             report = None
             if not args.skip_transcripts:
-                transcript = fetch_official_transcript(episode, show)
+                audio_dir = root / "data" / "audio" / episode.show_id
+                transcript = resolve_transcript(
+                    episode,
+                    show,
+                    work_dir=audio_dir,
+                    skip_audio=args.skip_audio,
+                    whisper_bin=args.whisper_bin,
+                    whisper_model=args.whisper_model,
+                )
                 rec = episode_record(episode, decision, transcript=transcript)
                 rec["paths"] = {key: _rel(path, root) for key, path in paths.items()}
-                print(f"         transcript: {transcript.status} ({transcript.detail or transcript.source_kind})")
+                kind = "audio-derived" if transcript.derived_from_audio else "official"
+                print(
+                    f"         transcript: {transcript.status} [{kind}] "
+                    f"({transcript.detail or transcript.source_kind})"
+                )
                 if transcript.found and transcript.text:
                     write_text(paths["transcript"], transcript.text)
                     rec["transcript"]["path"] = _rel(paths["transcript"], root)

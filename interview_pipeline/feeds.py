@@ -121,6 +121,10 @@ def parse_rss(xml_text: str, show: Show) -> list[Episode]:
         )
         blob = f"{title}\n{description}"
         mentioned = [name for name in people if name.lower() in blob.lower()]
+        enclosure = item.find("enclosure")
+        audio_url = None
+        if enclosure is not None:
+            audio_url = (enclosure.attrib.get("url") or "").strip() or None
         episodes.append(
             Episode(
                 show_id=show.id,
@@ -132,6 +136,7 @@ def parse_rss(xml_text: str, show: Show) -> list[Episode]:
                 duration_seconds=duration,
                 description=description,
                 rss_transcript_url=_rss_transcript_url(item),
+                audio_url=audio_url,
                 watched_people=mentioned,
             )
         )

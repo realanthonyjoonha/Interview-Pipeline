@@ -16,6 +16,7 @@ def episode_paths(episode: Episode, root: Path | None = None) -> dict[str, Path]
         "episode": base / "episodes" / show / f"{slug}.json",
         "transcript": base / "transcripts" / show / f"{slug}.md",
         "report": base / "reports" / show / f"{slug}.md",
+        "audio": base / "audio" / show / f"{slug}.mp3",
     }
 
 

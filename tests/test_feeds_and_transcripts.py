@@ -37,7 +37,9 @@ def test_parse_rss_fixture():
     assert episodes[0].title.startswith("Ryan Guest")
     assert episodes[0].duration_seconds == 7952
     assert episodes[0].published == "2026-08-11"
+    assert episodes[0].audio_url == "https://example.test/audio/ryan-guest.mp3"
     assert episodes[1].duration_seconds == 517
+    assert episodes[1].audio_url is None
 
 
 def test_parse_cheeky_transcript_to_speaker_turns():

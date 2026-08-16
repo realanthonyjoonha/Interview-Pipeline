@@ -5,6 +5,7 @@ import time
 import urllib.error
 import urllib.request
 from dataclasses import dataclass
+from pathlib import Path
 
 from interview_pipeline.catalog import user_agent
 
@@ -79,3 +80,33 @@ def fetch(
 
     _LAST_FETCH_AT = time.monotonic()
     return result
+
+
+def fetch_to_file(
+    url: str,
+    destination: Path,
+    *,
+    timeout: int = 300,
+    pause_s: float = 0.4,
+) -> Path:
+    """Download a public file (RSS audio enclosure) to disk. No cookies/login."""
+    global _LAST_FETCH_AT
+    wait = pause_s - (time.monotonic() - _LAST_FETCH_AT)
+    if wait > 0:
+        time.sleep(wait)
+    destination.parent.mkdir(parents=True, exist_ok=True)
+    headers = {"User-Agent": user_agent(), "Accept": "*/*"}
+    request = urllib.request.Request(url, headers=headers)
+    try:
+        with urllib.request.urlopen(request, timeout=timeout) as response:
+            destination.write_bytes(response.read())
+    except urllib.error.HTTPError as exc:
+        _LAST_FETCH_AT = time.monotonic()
+        raise HttpError(f"HTTP {exc.code} downloading {url}", status=exc.code, url=url) from exc
+    except urllib.error.URLError as exc:
+        _LAST_FETCH_AT = time.monotonic()
+        raise HttpError(f"Failed to download {url}: {exc}", url=url) from exc
+    _LAST_FETCH_AT = time.monotonic()
+    if destination.stat().st_size == 0:
+        raise HttpError(f"Downloaded empty file from {url}", url=url)
+    return destination

@@ -51,7 +51,7 @@
       "transcript": "none_known",
       "filter": "no_priors",
       "hosts": ["Sarah Guo", "Elad Gil", "Sarah", "Elad"],
-      "notes": "Guest sits or 45+; skip host-only under 45."
+      "notes": "Guest sits or 45+; skip host-only under 45. Official text is rare; use audio fallback."
     },
     {
       "id": "bg2",
@@ -63,7 +63,7 @@
       "transcript": "none_known",
       "filter": "bg2",
       "hosts": ["Brad Gerstner", "Bill Gurley", "Brad", "Bill"],
-      "notes": "Irregular. Length bar still applies."
+      "notes": "Irregular. Length bar still applies. Official text is rare; use audio fallback."
     },
     {
       "id": "big_technology",
@@ -87,7 +87,7 @@
       "transcript": "colossus",
       "filter": "iltb",
       "hosts": ["Patrick O'Shaughnessy", "Patrick"],
-      "notes": "AI / infra / chip / lab guests only. Colossus transcripts are treated as login-gated unless a public transcript is on the page."
+      "notes": "AI / infra / chip / lab guests only. Do not scrape Colossus; audio transcription is the fallback."
     },
     {
       "id": "semianalysis_weekly",
@@ -99,7 +99,7 @@
       "transcript": "none_known",
       "filter": "semianalysis",
       "hosts": ["Jordan Nanos", "Doug O'Laughlin"],
-      "notes": "Technical semis/infra staff analysis, not a figurehead hunt ground. Short teardown exception: China silicon, InferenceX, or a named teardown."
+      "notes": "Technical semis/infra staff analysis, not a figurehead hunt ground. Short teardown exception: China silicon, InferenceX, or a named teardown. Official text is rare; use audio fallback."
     },
     {
       "id": "latent_space",

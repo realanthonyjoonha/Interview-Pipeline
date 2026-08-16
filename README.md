@@ -1,19 +1,20 @@
 # Interview-Pipeline
 
-Scan a locked set of long-form interview shows, keep structured episode records, fetch an **official** transcript when one is public, and write extractive main-points notes. The chat agent stays the editor. This repo does the fetch and first draft so a conversation does not burn tokens re-pulling transcripts.
+Scan a locked set of long-form interview shows, keep structured episode records, fetch an **official** transcript when one is public, and otherwise transcribe the RSS audio locally. Then write an extractive main-points brief. The chat agent stays the editor.
 
-This is **not** Cockpit. Notes are decision-support / time-saving only. No house view. No buy/sell. No investment-desk framing. If there is no official transcript, the pipeline records that fact and **does not write a report**. It does not invent quotes or write from recaps.
+This is **not** Cockpit. Notes are decision-support / time-saving only. No house view. No buy/sell. No investment-desk framing. Do not invent quotes. Do not write from recaps. If there is no official text **and** audio transcription fails or there is no audio, the pipeline records that fact and **does not write a report**.
 
 ## What v1 does
 
 1. Ingests official RSS feeds for the CORE shows (and optional secondary shows if you enable them).
 2. Applies the show filters (interview vs essay, guest sit, length bar, topic gates).
-3. Fetches an official transcript when the show publishes one (RSS `podcast:transcript`, public Substack transcript, or a public Lex `-transcript` page).
-4. Marks paywalled / login-gated transcripts instead of scraping around them (Lenny paid posts, Colossus/ILTB unless the transcript is on the public page).
-5. If a real transcript exists, writes a markdown note: header, attributed main points, numbers, caveats.
-6. Saves artifacts under `data/`.
+3. Prefers an official public transcript (RSS `podcast:transcript`, public Substack transcript, public Lex `-transcript` page).
+4. If official text is missing, paywalled, or login-gated, downloads the RSS audio enclosure and transcribes it locally with **whisper.cpp**. Those reports are marked **audio-derived**, not official-page quotes.
+5. Does **not** scrape login-gated Colossus pages. Audio transcription is the allowed fallback.
+6. Writes a grouped markdown brief: arguments, numbers they stated, caveats, disagreements. Not a quote dump.
+7. Saves artifacts under `data/`.
 
-No paid API keys are required. Optional keys are not used.
+No paid API keys are required.
 
 ## Locked people
 
@@ -23,55 +24,61 @@ Sam Altman, Dario Amodei, Demis Hassabis, Elon Musk, Satya Nadella, Sundar Picha
 
 ## CORE shows
 
-| Show | Filter | Official transcript in v1 |
+| Show | Filter | Transcript in v1 |
 | --- | --- | --- |
-| Dwarkesh Podcast | Interviews only; skip sub-20 min essays | Public Substack transcript section |
-| Cheeky Pint | Founder sits; quiet since 27 Apr 2026 | RSS `podcast:transcript` |
-| No Priors | Guest sit or 45+; skip host-only under 45 | Usually none → record missing |
-| BG2 | Irregular; 45+ min bar | Usually none → record missing |
-| Big Technology | Named guest interviews; skip news roundtables | Usually none → record missing |
-| Invest Like the Best | AI / infra / chip / lab guests only | Colossus treated as login-gated unless public |
-| SemiAnalysis Weekly | Staff semis/infra analysis, not a figurehead hunt | Usually none → record missing |
-| Latent Space | Long interviews only; ignore AINews shorts | Public Substack player transcript |
-| The Pragmatic Engineer | Enterprise / dev-tool adoption interviews | Public Substack player transcript |
-| Lenny’s Podcast | Only when guest/title is AI-product | Paid posts marked paywalled |
+| Dwarkesh Podcast | Interviews only; skip sub-20 min essays | Official Substack page, else audio |
+| Cheeky Pint | Founder sits; quiet since 27 Apr 2026 | Official RSS transcript, else audio |
+| No Priors | Guest sit or 45+; skip host-only under 45 | Usually audio-derived |
+| BG2 | Irregular; 45+ min bar | Usually audio-derived |
+| Big Technology | Named guest interviews; skip news roundtables | Usually audio-derived |
+| Invest Like the Best | AI / infra / chip / lab guests only | Colossus not scraped; audio fallback |
+| SemiAnalysis Weekly | Staff semis/infra analysis, not a figurehead hunt | Usually audio-derived |
+| Latent Space | Long interviews only; ignore AINews shorts | Official Substack, else audio |
+| The Pragmatic Engineer | Enterprise / dev-tool adoption interviews | Official Substack, else audio |
+| Lenny’s Podcast | Only when guest/title is AI-product | Paid posts → audio fallback |
 
 Length bar: about 45+ minutes, except SemiAnalysis Weekly shorts about China silicon, InferenceX, or a named teardown.
 
-Secondary shows (Lex Fridman, Decoder, Possible, Training Data, 20VC, Hard Fork, Practical AI, Stratechery Interview, Conversations with Tyler) live in `config/shows.json` with `"enabled": false`. Add a feed URL and flip the flag to include them.
+Secondary shows live in `config/shows.json` with `"enabled": false`.
 
 ## Setup
 
-Python 3.11+. No third-party runtime dependencies.
+Python 3.11+. Runtime code has no PyPI dependencies. Audio fallback needs **ffmpeg** and **whisper.cpp**.
 
 ```bash
 python3 -m pip install -e '.[dev]'   # pytest only, for tests
-# or just run from the repo root:
-python3 -m interview_pipeline --help
+sudo apt-get install -y ffmpeg       # if it is not already on PATH
+
+# Local whisper.cpp CLI + tiny.en model (no API key)
+./scripts/bootstrap-whisper.sh
+# or set:
+#   export WHISPER_BIN=/path/to/whisper-cli
+#   export WHISPER_MODEL=/path/to/ggml-tiny.en.bin
 ```
+
+`bootstrap-whisper.sh` downloads the official whisper.cpp Ubuntu x64 release and `ggml-tiny.en.bin` into `tools/whisper/` (gitignored). Larger models (`base.en`, `small.en`) are more accurate if you point `WHISPER_MODEL` at them.
+
+Without whisper.cpp, official-transcript shows still scan. Shows with no public text will record `transcript.status = missing` or `error` and will not invent a report.
 
 ## Run one local scan
 
-From the repo root:
-
 ```bash
-# List CORE shows
 python3 -m interview_pipeline shows
 
-# Scan 2–3 CORE shows, last 3 weeks, write episode records + transcripts + reports
+# Official-transcript shows
 python3 -m interview_pipeline scan --show dwarkesh --limit 8 --max-matches 2
-python3 -m interview_pipeline scan --show cheeky_pint --limit 8 --max-matches 2
-python3 -m interview_pipeline scan --show latent_space --limit 8 --max-matches 2
 
-# Or all enabled CORE shows
+# Audio-fallback shows (No Priors / BG2 / SemiAnalysis Weekly)
+python3 -m interview_pipeline scan --show no_priors --since 30 --limit 6 --max-matches 1
+
+# Skip the audio fallback
+python3 -m interview_pipeline scan --show no_priors --skip-audio
+
+# All enabled CORE shows
 python3 -m interview_pipeline scan --tier core --since 21 --limit 8 --max-matches 2
 ```
 
-Episode JSON always gets written. A report is written only when an official transcript was fetched and parsed into speaker turns.
-
-Example artifacts from a 2026-08-16 local scan of Dwarkesh, Cheeky Pint, Latent Space, and No Priors are already under `data/`. No Priors matches show `transcript.status = missing` and have no report files.
-
-Write a report from a local official transcript (or the test fixture):
+A report is written only when a usable official or audio-derived transcript was obtained.
 
 ```bash
 python3 -m interview_pipeline report \
@@ -81,35 +88,33 @@ python3 -m interview_pipeline report \
   --show-name "Fixture show"
 ```
 
-If you pass an empty file or a recap with no speaker turns, the command exits 2 and writes nothing.
+Empty files, recaps, empty audio, and failed transcriptions exit 2 and write nothing.
 
 ## Weekday job
 
-A weekday cron / GitHub Action should do a bounded CORE scan, then a human or chat editor reviews new reports.
-
 ```bash
-# Weekdays 08:00 local: last 8 days, up to 3 matches per show
+# Once per machine
+./scripts/bootstrap-whisper.sh
+
+# Weekdays 08:00: last 8 days, up to 3 matches per show (official first, then audio)
 0 8 * * 1-5 cd /path/to/Interview-Pipeline && python3 -m interview_pipeline scan --tier core --since 8 --limit 12 --max-matches 3
 ```
 
-Still manual after the job:
-
-- Edit the extractive note (the chat agent is the editor).
-- Skip or mark shows whose official transcript is paywalled.
-- Commit new `data/` artifacts if you want them in git.
-- Enable secondary shows in `config/shows.json` when you want them.
+Still manual after the job: edit the brief, commit new `data/` artifacts if you want them in git, enable secondary shows.
 
 ## Artifact layout
 
 ```
-config/shows.json              # show list, filters, locked people
+config/shows.json
 data/episodes/<show>/<slug>.json
 data/transcripts/<show>/<slug>.md
 data/reports/<show>/<slug>.md
+data/audio/<show>/          # downloaded enclosures + wav (gitignored)
 data/scans/<timestamp>.json
+tools/whisper/              # local whisper.cpp + model (gitignored)
 ```
 
-Reports are extractive: they quote or tightly excerpt speaker turns from the official transcript. They are not a house view.
+Audio-derived reports say so in the header. Official-page transcripts remain the preferred source.
 
 ## Tests
 
@@ -117,12 +122,11 @@ Reports are extractive: they quote or tightly excerpt speaker turns from the off
 python3 -m pytest -q
 ```
 
-Covered in v1: show filter rules, and **no transcript ⇒ no report**.
+Covered: show filters; official text preferred; missing official + fixture audio path still writes an audio-derived report; empty audio / failed transcription / no audio ⇒ no report; Colossus is not scraped.
 
 ## What is still manual
 
-- Reviewing and tightening reports (this repo drafts; it does not publish a desk view).
-- Shows without a public official transcript: the scan records `transcript.status = missing` and stops.
-- Paywalled Lenny posts and login-gated Colossus pages: marked, not scraped.
-- Some public Substack player transcripts use `SPEAKER_01` labels; do not rename them unless the official page does.
-- Secondary feeds that are blank in `config/shows.json` need an official RSS URL before they can be enabled.
+- Reviewing and tightening briefs (this repo drafts; it does not publish a desk view).
+- whisper.cpp speaker labels are often generic (`Speaker`). Do not invent names.
+- Choosing a larger Whisper model if tiny.en is too rough.
+- Enabling secondary shows and filling blank feed URLs.

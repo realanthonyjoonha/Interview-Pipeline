@@ -389,29 +389,12 @@ def fetch_lex_transcript(episode: Episode) -> TranscriptResult:
 
 
 def fetch_colossus_transcript(episode: Episode) -> TranscriptResult:
-    if not episode.url:
-        return TranscriptResult("missing", detail="No Colossus episode URL")
-    try:
-        html = fetch(episode.url, accept="text/html").text()
-    except HttpError as exc:
-        if exc.status in {401, 403}:
-            return TranscriptResult("paywalled", source_url=episode.url, source_kind="colossus", detail=str(exc))
-        return TranscriptResult("error", source_url=episode.url, source_kind="colossus", detail=str(exc))
-
-    text = html_to_text(html)
-    if looks_like_transcript(text):
-        return TranscriptResult(
-            "found",
-            text=_normalize_speaker_blocks(text),
-            source_url=episode.url,
-            source_kind="colossus",
-            detail="Official transcript text present on the public Colossus page",
-        )
+    """Do not scrape login-gated Colossus pages. Audio transcription is the fallback."""
     return TranscriptResult(
-        "paywalled",
-        source_url=episode.url,
+        "missing",
+        source_url=episode.url or None,
         source_kind="colossus",
-        detail="Colossus/ILTB transcript is not on the public page; treating as login-gated",
+        detail="Colossus/ILTB official transcripts are treated as login-gated; not scraping. Audio fallback may apply.",
     )
 
 

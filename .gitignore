@@ -7,3 +7,8 @@ venv/
 .env
 .DS_Store
 data/cache/
+data/audio/
+tools/whisper/*.bin
+tools/whisper/whisper-cli
+tools/whisper/main
+tools/whisper/*.tar.gz

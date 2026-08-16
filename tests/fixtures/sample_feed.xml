@@ -8,6 +8,7 @@
       <guid>example-ryan-guest</guid>
       <pubDate>Tue, 11 Aug 2026 16:31:23 GMT</pubDate>
       <itunes:duration>7952</itunes:duration>
+      <enclosure url="https://example.test/audio/ryan-guest.mp3" length="123" type="audio/mpeg" />
       <description>A long interview.</description>
     </item>
     <item>

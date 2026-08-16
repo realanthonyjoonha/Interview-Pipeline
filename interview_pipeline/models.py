@@ -29,6 +29,7 @@ class Episode:
     duration_seconds: int | None
     description: str = ""
     rss_transcript_url: str | None = None
+    audio_url: str | None = None
     watched_people: list[str] = field(default_factory=list)
 
     @property
@@ -57,6 +58,7 @@ class TranscriptResult:
     source_url: str | None = None
     source_kind: str | None = None
     detail: str | None = None
+    derived_from_audio: bool = False
 
     @property
     def found(self) -> bool:
@@ -102,6 +104,7 @@ def episode_record(
             "source_kind": transcript.source_kind,
             "detail": transcript.detail,
             "character_count": len(transcript.text) if transcript.text else 0,
+            "derived_from_audio": transcript.derived_from_audio,
         }
     if report is not None:
         rec["report"] = asdict(report)

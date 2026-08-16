@@ -49,9 +49,12 @@ def test_writes_report_from_fixture_transcript(tmp_path: Path):
     assert text.startswith("# Fixture interview")
     assert "## Main points" in text
     assert "## Caveats and disagreements" in text
-    assert "Guest Speaker said:" in text
+    assert "## Numbers they stated" in text
+    assert "**Guest Speaker:**" in text
     assert "2 million examples" in text
     assert "I disagree that scale alone" in text
+    assert "said:" not in text
+    assert "…" not in text
     assert "No house view" in text or "Not a house view" in text
     assert "buy/sell" in text
 
@@ -106,4 +109,7 @@ def test_report_shape_has_header_main_points_and_caveats():
     assert "# Fixture interview" in markdown
     assert "## Main points" in markdown
     assert "## Caveats and disagreements" in markdown
+    assert "## Numbers they stated" in markdown
     assert "12 dollars per million tokens" in markdown
+    assert "said:" not in markdown
+    assert "…" not in markdown
