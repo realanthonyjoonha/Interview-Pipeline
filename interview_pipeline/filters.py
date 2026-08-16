@@ -2,7 +2,7 @@ from __future__ import annotations
 
 import re
 
-from interview_pipeline.catalog import default_min_minutes
+from interview_pipeline.catalog import default_min_minutes, watched_people
 from interview_pipeline.models import Episode, FilterDecision, Show
 
 DEFAULT_MIN_MINUTES = 20
@@ -64,6 +64,8 @@ _HOST_ONLY_HINTS = re.compile(
     r"(host.?only|just (sarah|elad|the hosts)|no guest|between the hosts)",
     re.I,
 )
+_DYLAN_PATEL = re.compile(r"\bdylan\s+patel\b", re.I)
+ALWAYS_IN_SCOPE_PERSON = "Dylan Patel"
 
 
 def extract_guest_hint(
@@ -125,9 +127,22 @@ def _too_short(episode: Episode, minimum: float, *, allow_unknown: bool = False)
     return minutes < minimum
 
 
+def _dylan_patel_named(episode: Episode, hosts: tuple[str, ...] = ()) -> bool:
+    guest = _guest(episode, hosts) or ""
+    blob = f"{episode.title}\n{guest}\n{episode.description[:800]}"
+    return bool(_DYLAN_PATEL.search(blob))
+
+
 def decide(episode: Episode, show: Show, *, min_minutes: int | None = None) -> FilterDecision:
     """Return whether this episode should be fetched / reported on."""
     bar = float(min_minutes if min_minutes is not None else default_min_minutes())
+    if (
+        ALWAYS_IN_SCOPE_PERSON in watched_people()
+        and _dylan_patel_named(episode, show.hosts)
+        and not _too_short(episode, bar, allow_unknown=True)
+    ):
+        guest = _guest(episode, show.hosts) or ALWAYS_IN_SCOPE_PERSON
+        return _ok([f"Dylan Patel sit (>= {bar:g} min); always in-scope"], guest)
     handler = {
         "dwarkesh": _dwarkesh,
         "cheeky_pint": _cheeky_pint,

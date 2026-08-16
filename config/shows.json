@@ -1,5 +1,5 @@
 {
-  "notes": "CORE shows are enabled. Secondary shows are optional and off by default. Do not add names to watched_people.",
+  "notes": "CORE shows are enabled. Secondary shows are optional and off by default. Do not add names to watched_people. A 20+ minute sit by Dylan Patel is always in-scope.",
   "watched_people": [
     "Sam Altman",
     "Dario Amodei",
@@ -10,7 +10,8 @@
     "Mark Zuckerberg",
     "Jensen Huang",
     "Ilya Sutskever",
-    "Andrej Karpathy"
+    "Andrej Karpathy",
+    "Dylan Patel"
   ],
   "defaults": {
     "min_minutes": 20,

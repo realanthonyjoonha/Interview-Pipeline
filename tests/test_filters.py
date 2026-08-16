@@ -167,3 +167,21 @@ def test_twenty_five_minute_in_scope_sit_is_a_match():
     decision = decide(sit, _show("cheeky_pint"))
     assert decision.matched is True
     assert decision.guest_hint == "Sundar Pichai"
+
+
+def test_dylan_patel_sit_always_in_scope_at_20_plus():
+    sit = _ep("Dylan Patel - How he built the research firm", 25 * 60)
+    iltb = decide(sit, _show("iltb"))
+    assert iltb.matched is True
+    assert any("always in-scope" in reason for reason in iltb.reasons)
+    training_data = decide(sit, _show("length_only", show_id="training_data"))
+    assert training_data.matched is True
+    dwarkesh = decide(_ep("Dylan Patel – GPU supply and capex", 25 * 60), _show("dwarkesh"))
+    assert dwarkesh.matched is True
+    weekly = decide(
+        _ep("Ep. 030 - Memory pricing with Dylan Patel | Jordan Nanos", 25 * 60),
+        _show("semianalysis"),
+    )
+    assert weekly.matched is True
+    short = decide(_ep("Dylan Patel - How he built the research firm", 15 * 60), _show("iltb"))
+    assert short.matched is False

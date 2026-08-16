@@ -11,6 +11,7 @@ LOCKED = (
     "Jensen Huang",
     "Ilya Sutskever",
     "Andrej Karpathy",
+    "Dylan Patel",
 )
 
 

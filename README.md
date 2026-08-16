@@ -20,7 +20,9 @@ No paid API keys are required.
 
 Do not add names to this list. The pipeline only flags mentions; it does not expand the set.
 
-Sam Altman, Dario Amodei, Demis Hassabis, Elon Musk, Satya Nadella, Sundar Pichai, Mark Zuckerberg, Jensen Huang, Ilya Sutskever, Andrej Karpathy.
+Sam Altman, Dario Amodei, Demis Hassabis, Elon Musk, Satya Nadella, Sundar Pichai, Mark Zuckerberg, Jensen Huang, Ilya Sutskever, Andrej Karpathy, Dylan Patel.
+
+A 20+ minute sit by Dylan Patel is always in-scope: as a guest on ILTB, Training Data, Dwarkesh, and other configured shows, and when he appears on SemiAnalysis Weekly.
 
 ## CORE shows
 
