@@ -78,7 +78,7 @@ python3 -m interview_pipeline scan --show no_priors --skip-audio
 python3 -m interview_pipeline scan --tier core --since 21 --limit 8 --max-matches 2
 ```
 
-A report is written only when a usable official or audio-derived transcript was obtained.
+A report is written only when a usable official or audio-derived transcript was obtained. A checked-in example is `data/reports/no_priors/2026-08-13-what-chess-com-teaches-us-about-superhuman-capabilities-with-ceo-erik-allebest.md` (audio-derived from whisper.cpp after the official page was missing).
 
 ```bash
 python3 -m interview_pipeline report \
