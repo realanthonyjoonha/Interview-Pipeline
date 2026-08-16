@@ -17,20 +17,23 @@
     "guest_hint": "CEO Erik Allebest"
   },
   "transcript": {
-    "status": "missing",
-    "source_url": null,
-    "source_kind": "none_known",
-    "detail": "No official public transcript source configured for this show",
-    "character_count": 0
+    "status": "found",
+    "source_url": "https://traffic.megaphone.fm/PDP3695187109.mp3",
+    "source_kind": "audio_whisper",
+    "detail": "Local whisper.cpp transcript from the RSS audio enclosure. Not official-page quotes.",
+    "character_count": 46115,
+    "derived_from_audio": true,
+    "path": "data/transcripts/no_priors/2026-08-13-what-chess-com-teaches-us-about-superhuman-capabilities-with-ceo-erik-allebest.md"
   },
   "paths": {
     "episode": "data/episodes/no_priors/2026-08-13-what-chess-com-teaches-us-about-superhuman-capabilities-with-ceo-erik-allebest.json",
     "transcript": "data/transcripts/no_priors/2026-08-13-what-chess-com-teaches-us-about-superhuman-capabilities-with-ceo-erik-allebest.md",
-    "report": "data/reports/no_priors/2026-08-13-what-chess-com-teaches-us-about-superhuman-capabilities-with-ceo-erik-allebest.md"
+    "report": "data/reports/no_priors/2026-08-13-what-chess-com-teaches-us-about-superhuman-capabilities-with-ceo-erik-allebest.md",
+    "audio": "data/audio/no_priors/2026-08-13-what-chess-com-teaches-us-about-superhuman-capabilities-with-ceo-erik-allebest.mp3"
   },
   "report": {
-    "written": false,
-    "path": null,
-    "reason": "no official transcript (missing): No official public transcript source configured for this show. Refusing to write a report."
+    "written": true,
+    "path": "data/reports/no_priors/2026-08-13-what-chess-com-teaches-us-about-superhuman-capabilities-with-ceo-erik-allebest.md",
+    "reason": null
   }
 }

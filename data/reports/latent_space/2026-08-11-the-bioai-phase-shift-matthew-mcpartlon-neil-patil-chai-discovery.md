@@ -36,40 +36,10 @@ Attributed to the speaker. Wording is condensed from complete transcript sentenc
 
 ## Numbers they stated
 
-- SPEAKER_03: Crazy thought is like, we didn't have a multimer structure prediction model until like 2021.
-- SPEAKER_03: And then when Chai 2 came out, our second paper after Chai 1, we kind of Like show the world like this is actually possible and it's possible at scale.
-- SPEAKER_03: I think Josh likes to say we set up bold company wide challenge to design antibodies to 50 targets.
-- SPEAKER_03: So from that, we chose 50 targets, designed antibodies against them, got hits to half.
-- SPEAKER_03: Yeah, CHI 1's finished.
-- SPEAKER_03: So we ended up like, we were up for like 40 hours straight, just like getting the paper over the line, getting like all the last things done on the web server.
-- SPEAKER_03: And we've been up for like 40 hours.
-- SPEAKER_03: 48 hours straight.
-- SPEAKER_03: And I think it was 7 in the morning.
-- SPEAKER_03: And that eventually led to the CHI-2 model.
-- SPEAKER_03: And that's where the CHI-2 paper and our bold target discovery project came in.
 - SPEAKER_03: To 50 targets for that paper, got binders to about half of them with being on average around a 20% hit rate for binding.
-- SPEAKER_03: And then afterwards started working on CHI 3.
-- SPEAKER_03: Let's take a look at CHI 1.
-- SPEAKER_03: CHI 1 has this like Roughly a tokenizer, a transformer, something that looks like a language model, and then something that kind of looks like an image diffusion model.
-- SPEAKER_03: So Chai 1 folding model.
-- SPEAKER_03: So Chai 1 would be like, there is a cat in this image.
-- SPEAKER_03: Thanks, Chai 1.
-- SPEAKER_03: And Chai 2 is like, I'll show you a background maybe.
-- SPEAKER_03: And Chai 2 will actually just give you back an image of a cat in a field.
-- SPEAKER_00: think that's actually a good thing to talk about after Chai 2, because I think Chai 2 is where it started to get really fun from a product perspective, right?
-- SPEAKER_00: I think with Chai 2, we crossed the threshold of usefulness.
-- SPEAKER_00: You know, these are scientists who have been spending, you know, 5, 10, 20 years of their life working on one target, right, often in some cases.
-- SPEAKER_00: She's like, no, I've just been, I've literally spent 10 years trying to get an initial binder to this thing.
-- SPEAKER_00: See what is CHI-2 actually capable of?
-- SPEAKER_00: Maybe I'm just going to have to throw it all away when Matt ships Chi 4.
 - SPEAKER_02: Typically that $2.6 billion number is amortized over all the failures as well.
-- SPEAKER_00: Like in, for example, in CHI 2, we showed like GPCR agonist activity, right?
 - SPEAKER_00: You're basically putting like all of these cues and like all of these retries and you're like duct taping things together and you have a and it becomes this mess where now what used to be like a ideally like a pretty simple computation that's just distributed, you're ending up spending like $95.
 - SPEAKER_00: We're at this state now, right, where we've, you know, we've raised another $400 million.
-- SPEAKER_03: For example, I think like outfold three, I might get this number wrong, but I think it was like 20, Three submodules.
-- SPEAKER_03: You're like, all right, what happens if I change, like if I tweak this thing in submodule 30 or like 21, what happens to the whole system?
-- SPEAKER_03: And you can always think, hey, we can make this better by like adding module 24, but like, should you, or should you think about just like removing things and lowering that complexity down?
-- SPEAKER_01: But even in the space of, you know, specialist companies, I mean, I'm not going to like just start naming them, but there's, I think, I don't know, probably 10, 15 protein design startups.
 - SPEAKER_00: We're only 30 people.
 - SPEAKER_00: And at some point, you're crossing that threshold of what you can do computationally when you can get folding models down to being within, you know, an angstrom, right, where you can get design models to give you, you know, hit rates, you know, north of 50%, or now you can put them, you know, in a In a 96 well plate and actually have like 48 interesting binders.
 

@@ -90,9 +90,12 @@ def parse_cheeky_transcript(text: str) -> str:
     for line in lines:
         match = header.match(line)
         if match:
-            flush()
-            speaker = match.group(2).strip()
-            continue
+            maybe_speaker = match.group(2).strip()
+            # Cheeky Pint headers are a name only. "[00:00:00] Speaker: words" is already a turn.
+            if is_speaker_name(maybe_speaker):
+                flush()
+                speaker = maybe_speaker
+                continue
         if line.strip():
             buf.append(line)
     flush()
@@ -157,7 +160,13 @@ def _normalize_speaker_blocks(text: str) -> str:
         line = lines[i]
         stamped = timestamp_name.match(line)
         if stamped:
-            speaker = stamped.group(2).strip()
+            rest = stamped.group(2).strip()
+            named = re.match(r"^([A-Z][\w .'-]{0,50}):\s+(.+)$", rest)
+            if named and is_speaker_name(named.group(1)):
+                out.append(f"{named.group(1)}: {named.group(2)}")
+                i += 1
+                continue
+            speaker = rest
             i = next_content(i + 1)
             chunks: list[str] = []
             while i < len(lines) and lines[i] and not is_speaker_name(lines[i]) and not timestamp_name.match(lines[i]):

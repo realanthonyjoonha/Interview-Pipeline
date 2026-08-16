@@ -34,8 +34,9 @@ def find_whisper_bin(explicit: str | None = None) -> Path | None:
         if found:
             candidates.append(Path(found))
     for path in candidates:
-        if path.is_file() and os.access(path, os.X_OK):
-            return path
+        resolved = path.resolve() if path.is_symlink() or path.is_file() else path
+        if resolved.is_file() and os.access(resolved, os.X_OK) and resolved.stat().st_size > 100_000:
+            return resolved
     return None
 
 

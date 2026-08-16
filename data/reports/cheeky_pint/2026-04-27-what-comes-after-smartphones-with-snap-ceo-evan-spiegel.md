@@ -36,39 +36,17 @@ Attributed to the speaker. Wording is condensed from complete transcript sentenc
 
 ## Numbers they stated
 
-- Evan Spiegel: Actually, we described it as that towards the end of 2025, and it is just proving to be true in a major way for a couple of reasons.
-- Evan Spiegel: After 12 years of investment in glasses, in the next generation of computing, in trying to make computing more human, it's actually coming.
-- Evan Spiegel: We've been working on Specs probably since 2014.
-- Evan Spiegel: I think Glass came out in 2013, I want to say.
-- John Collison: What do you think in, say, 10 or 15 years time that computing mix looks like?
-- John Collison: In the very early days of smartphones, like go back to '05, '06, it's like, "Oh, you'll have like the BlackBerry with the keyboard for people doing a lot of emailing." You remember like the Nokia N-Gage, that was like almost a PlayStation PSP-type gaming platform.
-- John Collison: Do you think full VR, like Apple Vision Pro, has a place in five or 10 years, or do you think everything just collapses into this form factor?
 - Evan Spiegel: In 2026 dollars, a Macintosh was $8,000.
 - Evan Spiegel: They certainly won't be $8,000.
-- Evan Spiegel: The problem is it's not 10 times better than the next best alternative, which is the phone.
-- Evan Spiegel: The rule for us in product design, or when we're investing in a new product, investing in a new idea, if it's not 10 times better than the next best alternative, then there is no point in investing in it.
-- Evan Spiegel: If you look at camera glasses today in the low hundreds of dollars, maybe 150 bucks, 200 bucks to buy camera glasses.
-- Evan Spiegel: I think we just didn't see a path to that being a 10 times better product.
 - Evan Spiegel: The team was using an enterprise service for bug reports, and this thing probably cost like $100,000 a year.
 - Evan Spiegel: Today, they built a replacement for it in a day, saved $100,000, but more importantly, they were like, "This is a way better tool for us.
-- Evan Spiegel: Yeah, I love this tool." Where I think we're at in 2026, which is fundamentally really different, is that there's literally going to be bespoke software for people that they're going to be able to imagine that they're going to be able to build and create really quickly, that they can get an enormous amount of value from.
 - Evan Spiegel: How are you going to overcome the 1 million apps or 2 million apps on the App Store that are locked into the Apple ecosystem?
 - Evan Spiegel: I think Apple announced last year they were like, "There's been 500 billion selfies captured on iPhone this year," or something like that.
 - Evan Spiegel: We just announced we hit 25 million Snapchat+ subscribers, over a billion run rate on the direct revenue business.
 - John Collison: Whereas if you look at ChatGPT or Claude or something like that, they have to have the various tiers of subscriptions, $20 a month and $200 a month.
 - John Collison: Then you're saying goes up pretty quickly to 10 or 20 people, but maybe hits a plateau and starts decreasing.
-- Evan Spiegel: I think back in, it may have been 2016, 2017, we said the most important thing you need to do is separate social from media.
-- Evan Spiegel: We were talking about things like the importance of privacy, and the relationship between privacy and self-expression back in 2012.
-- Evan Spiegel: Our 15-year-old is fully on the screen train.
-- Evan Spiegel: Flynn, for example, our 15-year-old, he was going back and forth between his dad's house a lot and our house when he was younger, and so he needed a phone earlier.
-- Evan Spiegel: Our 15-year-old, he loves art.
-- Evan Spiegel: We use them at home for our 15-year-old, where we can decide exactly what apps he can use, how long he can use them.
-- Evan Spiegel: I think 5, 10 years ago, that was different.
 - Evan Spiegel: Every time we've kicked around, "Oh, we've got an idea for a new app," it's like, "Oh gosh, I don't think we can spare 15 people to spin up a new app.
 - Evan Spiegel: In the early days—I think this was like after we had gotten venture or maybe after we'd gotten venture funding—I think in the early days of getting our first round, we raised $400,000 or something like that.
-- Evan Spiegel: We were in a 7-Eleven and people are like, "What?
-- Evan Spiegel: It required very, very heavy network use because you're sending photos and videos all the time, which was really unusual back in 2012 or whatever it was.
-- John Collison: I got 28.
 
 ## Caveats and disagreements
 

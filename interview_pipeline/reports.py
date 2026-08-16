@@ -23,6 +23,13 @@ _BACKCHANNEL = re.compile(
     r"^(yeah|yes|yep|right|ok|okay|mm-?hmm|mhm|thanks|thank you|got it|sure|exactly|wow)\.?$",
     re.I,
 )
+_QUANTITY = re.compile(
+    r"(\$\s?\d|"
+    r"\b\d[\d,]*(?:\.\d+)?\s*(%|percent|x\b|million|billion|trillion|gpuc?s?|mw|gw|dollars?)|"
+    r"\b\d{1,3}(?:,\d{3})+\b|"
+    r"\b\d+\s*(users|people|members|employees))",
+    re.I,
+)
 _NUMBER = re.compile(
     r"(\b\d[\d,]*(?:\.\d+)?\s*(%|percent|x|k|m|b|million|billion|trillion|gpuc?s?|"
     r"mw|gw|tb|gb|ms|hours?|minutes?|years?|months?|weeks?|dollars?|usd)?\b|\$\s?\d)",
@@ -172,14 +179,19 @@ def _cluster_score(cluster: Cluster) -> tuple[int, int]:
     return (score, len(text.split()))
 
 
+_GENERIC_SPEAKERS = {"Speaker", "SPEAKER", "SPEAKER_00", "SPEAKER_01", "SPEAKER_02"}
+
+
 def _clusters(turns: list[Turn]) -> list[Cluster]:
+    speakers = {turn.speaker for turn in turns}
+    merge_same = not (len(speakers) == 1 and next(iter(speakers)) in _GENERIC_SPEAKERS)
     clusters: list[Cluster] = []
     for turn in turns:
         if not _noteworthy(turn):
             continue
         if _is_prompt(turn.text):
             continue
-        if clusters and clusters[-1].speaker == turn.speaker:
+        if merge_same and clusters and clusters[-1].speaker == turn.speaker:
             clusters[-1].texts.append(turn.text)
         else:
             clusters.append(Cluster(speaker=turn.speaker, texts=[turn.text]))
@@ -275,7 +287,7 @@ def build_report_markdown(
     disagree_lines: list[str] = []
     for cluster in clusters:
         for sentence in _sentences(cluster.text):
-            if _NUMBER.search(sentence):
+            if _QUANTITY.search(sentence):
                 number_lines.append(f"- {cluster.speaker}: {sentence}")
             if _CAVEAT.search(sentence):
                 caveat_lines.append(f"- {cluster.speaker}: {sentence}")

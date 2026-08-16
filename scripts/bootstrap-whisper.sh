@@ -15,21 +15,10 @@ echo "Installing whisper.cpp ${VERSION} into ${DEST}"
 curl -fsSL "${URL}" -o "${DEST}/${ARCHIVE}"
 tar -xzf "${DEST}/${ARCHIVE}" -C "${DEST}"
 
-# Release tarballs vary: find whisper-cli or main.
-BIN=""
-for candidate in \
-  "${DEST}/whisper-cli" \
-  "${DEST}/build/bin/whisper-cli" \
-  "${DEST}/bin/whisper-cli" \
-  "${DEST}/main"
-do
-  if [[ -f "${candidate}" ]]; then
-    BIN="${candidate}"
-    break
-  fi
-done
+# Release tarballs ship a tiny deprecated `main` stub and the real `whisper-cli`.
+BIN="$(find "${DEST}" -type f -name 'whisper-cli' -size +100k | head -n 1 || true)"
 if [[ -z "${BIN}" ]]; then
-  BIN="$(find "${DEST}" -type f -name 'whisper-cli' -o -name 'main' | head -n 1 || true)"
+  BIN="$(find "${DEST}" -type f \( -name 'whisper-cli' -o -name 'main' \) -size +100k | head -n 1 || true)"
 fi
 if [[ -z "${BIN}" ]]; then
   echo "Could not find whisper-cli in the release archive" >&2

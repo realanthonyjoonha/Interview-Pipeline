@@ -36,34 +36,7 @@ Attributed to the speaker. Wording is condensed from complete transcript sentenc
 
 ## Numbers they stated
 
-- Ryan Greenblatt: I would say that I expect full automation of AI R&D perhaps somewhere around 2031, 2030.
-- Ryan Greenblatt: Getting to the “beats all humans on the job” milestone, maybe my median expectation is around 2033.
-- Ryan Greenblatt: For example, we can have some environment where the model is training some AI on just eight H100s or some small amount of compute, and that model could be the equivalent of GPT-2 medium or whatever, and then similar to NanoGPT medium runs — and in RL, it’s tweaking and iterating on that.
-- Dwarkesh Patel: But I feel like one effect will be that we will have gotten rid of all the low-hanging fruits by 2030.
-- Dwarkesh Patel: Suppose we were back when GPT-3 was developed.
-- Dwarkesh Patel: The idea is that, with the level of compute they had back in 2022, if we had automated AI R&D back then, you could at the end of that year have Mythos.
-- Dwarkesh Patel: I’m glad you brought that up, because what has happened since GPT-3, or even 3.5, till now?
-- Ryan Greenblatt: My sense is that the reason why RL environments today are much better than they were in 2024 is not so much because we have hired way more human experts to make RL environments.
 - Dwarkesh Patel: Just look at, for example, what was reported in Business Insider yesterday, that Google is paying close to $2 billion for Mechanize.
-- Dwarkesh Patel: My claim is that if you went back to 2022 and you had GPT-3.5, and you were trying to make it better at coding without human experts, I think it would have just been very, very difficult.
-- Dwarkesh Patel: What we’re basically doing to evaluate how much progress is coming from data versus algorithms is training the best algorithmic recipe from 2019 till now with the best data from the 2026 data file, and then also training the different data files going back from 2019 to 2026 with the current best algorithmic recipe.
-- Ryan Greenblatt: The reason why we have a better pre-training data set now versus in 2019 is not because people are spending way more money getting human experts to type up data that the AIs are then trained on.
-- Ryan Greenblatt: You have one post-training pipeline where Mythos 5 builds a post-training pipeline, but it only has access to internet data plus a tiny amount of human experts, but it has the best current methods.
-- Ryan Greenblatt: You have another one where Mythos has access to the shitty post-training methods we had in 2024 but with a shit ton of human experts.
-- Ryan Greenblatt: There’s GPT-4.5, which famously people at OpenAI thought was a bit of a bust.
-- Dwarkesh Patel: We have GPT-7.5 trained on a bunch of environments, where it’s not only in general becoming a better AI, but specifically we’re training it to do AI R&D better.
-- Dwarkesh Patel: It’s making GPT-2 size runs that are better at playing video games that require sample efficiency or online learning or whatever other capabilities.
-- Ryan Greenblatt: Another thing that’s really important is you don’t just do GPT-2 sized runs, you also do small fine-tuning runs on GPT-6.
-- Ryan Greenblatt: As in, you have GPT-2, and you can do full pre-trains of GPT-2, and then you can do small post-training or mid-training or whatever runs on GPT-6.
-- Ryan Greenblatt: Another thing we can do is take GPT-7.5, and presumably in the course of GPT-7.5’s work, it’s running a bunch of experiments at varying scale that are actually on the critical path for AI R&D.
-- Dwarkesh Patel: Let’s actually also use this in production in the future, and teach you how to use it in production.” But stepping back, GPT-7.5 becomes GPT-8 as a result of all this AI R&D training and just generally becoming smarter.
-- Dwarkesh Patel: Then it helps you build GPT-9.
-- Dwarkesh Patel: GPT-8 has figured out how to make it so… GPT-9, as intelligent as it is… Humans currently, AI researchers, try their stuff, and they’re like, “Okay, but we trained GPT-4.5 and it wasn’t good.” It required real-world feedback or some evaluation of trying to use the model in production.
-- Dwarkesh Patel: I’m not sure if you get GPT-3 to Mythos holding compute and data constant within a year, but suppose it’s half of that.
-- Dwarkesh Patel: So think back to GPT-4 basically.
-- Dwarkesh Patel: We’re talking about something that is to Mythos or Sol what Mythos is to GPT-4.
-- Ryan Greenblatt: In the same way that when you ask an AI right now, “Hey, what do you think is the chance of AI takeover in the next 10 years?” they just give you an off-the-cuff answer that they haven’t really thought through very much.
-- Ryan Greenblatt: By 2040?
 - Ryan Greenblatt: Maybe around 35 or 40%?
 
 ## Caveats and disagreements

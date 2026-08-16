@@ -36,45 +36,17 @@ Attributed to the speaker. Wording is condensed from complete transcript sentenc
 
 ## Numbers they stated
 
-- Tony Xu: In fact, between 2016, '17, '18, we barely were able to raise a dollar relative to our peers.
-- Tony Xu: For us, some of the ones that came to mind, and frankly, the story that actually inspired the value in the first place was when our backs were against the wall, and we had, I think, less than two weeks of cash runway, and we had a terrible night where every single order was late—this was a Stanford football game in 2013, and I had trouble raising the seed round—we made the decision to refund everyone.
 - Tony Xu: That cost us over 40% of the bank account.
 - Tony Xu: When you have 2 weeks of runway, 40% of the bank—.
-- Tony Xu: We baked everyone cookies and delivered them at 05:00 AM before everybody woke up.
-- Tony Xu: Look, this was maybe 100-ish customers or something like this.
 - Tony Xu: I've always believed that these cultural norms or behaviors are really 80% of what you've done.
 - Tony Xu: We're the only platform today to take care of Dashers when there is these increasing gas prices and making sure that we have their back and that we're actually trying to help them save $1.40 to $1.90 per gallon for Dashers.
 - Tony Xu: Or in COVID, we were the only company to cut commissions by 50% when we were not yet profitable as a company.
 - Tony Xu: That was an expense over $100 million.
-- Tony Xu: We had that moment, obviously, in the fall of 2013.
-- Tony Xu: We had three very difficult years, 2016, '17, '18, where we had two rounds of financing that were incredibly difficult for us, the Series C and Series D.
 - Tony Xu: COVID, the first week, actually, the business tanked 80%.
-- Tony Xu: But if you looked over the last 15, 20 years, that has now become a lot more uniformly distributed, kind of like the US, actually, whereas this is not true in other parts of the world.
-- Tony Xu: In the case of some of these large brands, the big QSRs that you've heard of, which represents almost 50 cents on the dollar of restaurant spend in a place like the US, they're thinking about, how do I take my economies of scale and just keep going?
-- Tony Xu: I presented a lot of obstacles, but if you actually look at the totality of the data, you would see that the amount spent on restaurants or eating out has increased over the last 75 years, every single year.
-- Tony Xu: It used to be, these are rough numbers, but in the 1950s, when the government was measuring this, we would spend in this country, in America, maybe 75–80 cents on the dollar on groceries versus restaurants.
-- Tony Xu: In present day, those numbers are almost reversed, where it's almost 60 cents on the dollar on takeout and 40 cents on grocery.
-- John Collison: As you think about where tech has made the biggest impact versus 10 or 20 years ago with restaurants, what would be your top three list?
 - Tony Xu: For every dollar of food that if you and I bought inside of a restaurant, from the cost structure, you're going to have 30% of that in the food and the packaging, you're going to have 30% of it in the rent, you're going to have 30% of it in the labor, something like that.
-- Tony Xu: On that dollar, a restaurant can net 10 cents.
 - Tony Xu: But by and large, on average, you're going to make 3-5x the incremental margin.
-- Tony Xu: When you're talking about an activity like eating, which is 20–25 times a week— Yeah, it's not like coffee.
 - Tony Xu: But that, I think, is the opportunity that at least we're thinking about at DoorDash, because if you think about it, our product with now over 100 million-plus annual customers, tens of millions of monthly customers, they shop at various frequencies and they're building relationships with all of these businesses, sometimes many times a day, sometimes once every other month, sometimes once a year.
-- Tony Xu: I think because there's 20–25 moments per week, I think that there is an opportunity in which we can create that.
-- Tony Xu: I want to say it was 2017, maybe it was 2018.
 - Tony Xu: Did you know that there are over 1,000 different pizza choices in the Bay Area on DoorDash?
-- Tony Xu: This is actually what led us to the creation of Dot, which was when we started the Autonomy Project in 2018, 2019, we actually did not set out thinking that we needed to build anything, that we would… Surely there would be someone who would— Yes, we were out there raising our hand, asking for a partner to the dance, so to speak, and someone who could specialize in that, and we could specialize in the operations and things like this.
-- Tony Xu: You also have to have the 911 response system that literally totally responds within minutes, because sometimes we're talking about physical safety.
-- Tony Xu: One of the things that we shipped, this is actually a couple of years ago, was called SafeChat, where we noticed that prior to any physical altercation that may, unfortunately, happen between audiences, 90-something percent of the time, it's always preceded by a verbal altercation.
-- Tony Xu: It's because we care much more than any third-party mapping system of exactly where the last two feet, forget, 20 or 200 feet of some apartment unit door is, for example.
-- John Collison: Restaurant recommendations, it's like, "Here are 15 restaurants we like to go to.
-- Tony Xu: We can go super deep on restaurants and food, but as you start going into category n+1, we are just a smaller and smaller and smaller drop in the ocean.
-- Tony Xu: If we can also help you with that, both by helping build for you a CRM of a 360-view of guests where we can also send you customers inside stores, we'd love to do that.
-- Tony Xu: Yeah, it's like one-tenths the size of a car, but it can travel up to 20 miles an hour.
-- Tony Xu: You can think of almost suburban-like environments, where the deliveries are probably under 5 miles, and there's some challenge for a Dasher, for example, parking.
-- Tony Xu: If you're traveling the road, and you're going up to 20 miles an hour, there are some physical parameters that you're solving for, which is what guides the development of the actual stack.
-- John Collison: Two places that we're seeing tons of interesting stuff is, one, any cross-border use case where if you want to send money to 100 countries, it's already the case that stablecoin is a much better way to do that than anything else.
-- Tony Xu: Sometimes, a cautionary tale of the past, I remember services, Google food ordering launched in, I forget, 2015 or '16, and they allowed you to order delivery, for example, from various Google surfaces: Google Maps, Google Search, et cetera.
 
 ## Caveats and disagreements
 

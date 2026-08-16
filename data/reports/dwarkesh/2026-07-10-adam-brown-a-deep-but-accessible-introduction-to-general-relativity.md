@@ -31,9 +31,7 @@ Attributed to the speaker. Wording is condensed from complete transcript sentenc
 
 ## Numbers they stated
 
-- Adam Brown: That reason is not particularly compelling by modern standards but it turns out to be particularly correct, including crazily this factor of 2, which is correct for completely coincidental reasons.
 - Dwarkesh Patel: What does it even mean for them to have 1% or 2% or 5% of their original mass?
-- Dwarkesh Patel: You’re explaining 100-year-old physics, but it was very interesting.
 
 ## Caveats and disagreements
 

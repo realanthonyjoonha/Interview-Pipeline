@@ -23,12 +23,7 @@ Attributed to the speaker. Wording is condensed from complete transcript sentenc
 
 ## Numbers they stated
 
-- Speculative Decoding and Custom Speculators: Ali [00:04:05]: Speculative decoding, yeah.
-- Quantization Quality and Vendor Fidelity: Vibhu [00:25:00]: How do you see keeping quality of the model?
-- Inference Speedups and Benchmarking: Swyx [00:32:25]: Thing that people do wanna care about, and it’s something that you wrote about in your post.
-- Inference Speedups and Benchmarking: Like official API is 70 tokens per second, and you push it up to 90.
-- Hardware-Aware Inference and Auto-Tuning: Philip [00:54:32]: Don’t they do this for the training side, though?
-- Models Optimizing Their Own Inference: Philip [01:31:36]: One big part of my job a couple years ago was for any arbitrary model that came out on Hugging Face, writing a config foot and getting it up and running.
+- No explicit numbers were extracted from speaker turns.
 
 ## Caveats and disagreements
 
