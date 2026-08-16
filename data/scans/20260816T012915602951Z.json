@@ -1,0 +1,131 @@
+{
+  "scanned_at": "2026-08-16T01:29:15.602991+00:00",
+  "episode_count": 4,
+  "matched": 2,
+  "transcripts_found": 2,
+  "reports_written": 2,
+  "episodes": [
+    {
+      "id": "dwarkesh/2026-08-11-ryan-greenblatt-what-happens-once-ai-can-automate-ai-research",
+      "show_id": "dwarkesh",
+      "show_name": "Dwarkesh Podcast",
+      "title": "Ryan Greenblatt – What happens once AI can automate AI research?",
+      "published": "2026-08-11",
+      "url": "https://www.dwarkesh.com/p/ryan-greenblatt",
+      "guid": "substack:post:210737923",
+      "duration_seconds": 7952,
+      "duration_minutes": 132.5,
+      "watched_people": [],
+      "filter": {
+        "matched": true,
+        "reasons": [
+          "Dwarkesh interview"
+        ],
+        "guest_hint": "Ryan Greenblatt"
+      },
+      "transcript": {
+        "status": "found",
+        "source_url": "https://www.dwarkesh.com/p/ryan-greenblatt",
+        "source_kind": "substack_body",
+        "detail": "Official transcript section on the public Substack post",
+        "character_count": 140405,
+        "path": "data/transcripts/dwarkesh/2026-08-11-ryan-greenblatt-what-happens-once-ai-can-automate-ai-research.md"
+      },
+      "paths": {
+        "episode": "data/episodes/dwarkesh/2026-08-11-ryan-greenblatt-what-happens-once-ai-can-automate-ai-research.json",
+        "transcript": "data/transcripts/dwarkesh/2026-08-11-ryan-greenblatt-what-happens-once-ai-can-automate-ai-research.md",
+        "report": "data/reports/dwarkesh/2026-08-11-ryan-greenblatt-what-happens-once-ai-can-automate-ai-research.md"
+      },
+      "report": {
+        "written": true,
+        "path": "data/reports/dwarkesh/2026-08-11-ryan-greenblatt-what-happens-once-ai-can-automate-ai-research.md",
+        "reason": null
+      }
+    },
+    {
+      "id": "dwarkesh/2026-08-07-8-predictions-for-the-era-of-continual-learning",
+      "show_id": "dwarkesh",
+      "show_name": "Dwarkesh Podcast",
+      "title": "8 Predictions for the Era of Continual Learning",
+      "published": "2026-08-07",
+      "url": "https://www.dwarkesh.com/p/era-of-continual-learning",
+      "guid": "substack:post:210233020",
+      "duration_seconds": 517,
+      "duration_minutes": 8.6,
+      "watched_people": [],
+      "filter": {
+        "matched": false,
+        "reasons": [
+          "skip sub-20 min Dwarkesh essay/short"
+        ],
+        "guest_hint": null
+      },
+      "paths": {
+        "episode": "data/episodes/dwarkesh/2026-08-07-8-predictions-for-the-era-of-continual-learning.json",
+        "transcript": "data/transcripts/dwarkesh/2026-08-07-8-predictions-for-the-era-of-continual-learning.md",
+        "report": "data/reports/dwarkesh/2026-08-07-8-predictions-for-the-era-of-continual-learning.md"
+      }
+    },
+    {
+      "id": "dwarkesh/2026-08-03-why-smarter-ai-models-could-drive-up-compute-prices-10x",
+      "show_id": "dwarkesh",
+      "show_name": "Dwarkesh Podcast",
+      "title": "Why smarter AI models could drive up compute prices 10x",
+      "published": "2026-08-03",
+      "url": "https://www.dwarkesh.com/p/why-compute-might-get-10x-more-expensive-video",
+      "guid": "substack:post:209664458",
+      "duration_seconds": 678,
+      "duration_minutes": 11.3,
+      "watched_people": [],
+      "filter": {
+        "matched": false,
+        "reasons": [
+          "skip sub-20 min Dwarkesh essay/short"
+        ],
+        "guest_hint": null
+      },
+      "paths": {
+        "episode": "data/episodes/dwarkesh/2026-08-03-why-smarter-ai-models-could-drive-up-compute-prices-10x.json",
+        "transcript": "data/transcripts/dwarkesh/2026-08-03-why-smarter-ai-models-could-drive-up-compute-prices-10x.md",
+        "report": "data/reports/dwarkesh/2026-08-03-why-smarter-ai-models-could-drive-up-compute-prices-10x.md"
+      }
+    },
+    {
+      "id": "dwarkesh/2026-07-10-adam-brown-a-deep-but-accessible-introduction-to-general-relativity",
+      "show_id": "dwarkesh",
+      "show_name": "Dwarkesh Podcast",
+      "title": "Adam Brown – A deep but accessible introduction to general relativity",
+      "published": "2026-07-10",
+      "url": "https://www.dwarkesh.com/p/adam-brown-gr",
+      "guid": "substack:post:206445844",
+      "duration_seconds": 5904,
+      "duration_minutes": 98.4,
+      "watched_people": [],
+      "filter": {
+        "matched": true,
+        "reasons": [
+          "Dwarkesh interview"
+        ],
+        "guest_hint": "Adam Brown"
+      },
+      "transcript": {
+        "status": "found",
+        "source_url": "https://www.dwarkesh.com/p/adam-brown-gr",
+        "source_kind": "substack_body",
+        "detail": "Official transcript section on the public Substack post",
+        "character_count": 86193,
+        "path": "data/transcripts/dwarkesh/2026-07-10-adam-brown-a-deep-but-accessible-introduction-to-general-relativity.md"
+      },
+      "paths": {
+        "episode": "data/episodes/dwarkesh/2026-07-10-adam-brown-a-deep-but-accessible-introduction-to-general-relativity.json",
+        "transcript": "data/transcripts/dwarkesh/2026-07-10-adam-brown-a-deep-but-accessible-introduction-to-general-relativity.md",
+        "report": "data/reports/dwarkesh/2026-07-10-adam-brown-a-deep-but-accessible-introduction-to-general-relativity.md"
+      },
+      "report": {
+        "written": true,
+        "path": "data/reports/dwarkesh/2026-07-10-adam-brown-a-deep-but-accessible-introduction-to-general-relativity.md",
+        "reason": null
+      }
+    }
+  ]
+}

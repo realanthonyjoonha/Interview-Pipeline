@@ -26,6 +26,7 @@
       "site": "https://www.dwarkesh.com/podcast",
       "transcript": "substack",
       "filter": "dwarkesh",
+      "hosts": ["Dwarkesh Patel", "Dwarkesh"],
       "notes": "Interviews only; skip sub-20 min essays."
     },
     {
@@ -37,6 +38,7 @@
       "site": "https://cheekypint.transistor.fm/",
       "transcript": "rss_podcast_transcript",
       "filter": "cheeky_pint",
+      "hosts": ["John Collison"],
       "notes": "Founder sits. Cadence has been quiet since 27 Apr 2026."
     },
     {
@@ -48,6 +50,7 @@
       "site": "https://www.no-priors.com/",
       "transcript": "none_known",
       "filter": "no_priors",
+      "hosts": ["Sarah Guo", "Elad Gil", "Sarah", "Elad"],
       "notes": "Guest sits or 45+; skip host-only under 45."
     },
     {
@@ -59,6 +62,7 @@
       "site": "https://www.bg2pod.com/",
       "transcript": "none_known",
       "filter": "bg2",
+      "hosts": ["Brad Gerstner", "Bill Gurley", "Brad", "Bill"],
       "notes": "Irregular. Length bar still applies."
     },
     {
@@ -70,6 +74,7 @@
       "site": "https://www.bigtechnology.com/",
       "transcript": "none_known",
       "filter": "big_technology",
+      "hosts": ["Alex Kantrowitz"],
       "notes": "Named guest interviews only; skip news roundtables."
     },
     {
@@ -81,6 +86,7 @@
       "site": "https://colossus.com/",
       "transcript": "colossus",
       "filter": "iltb",
+      "hosts": ["Patrick O'Shaughnessy", "Patrick"],
       "notes": "AI / infra / chip / lab guests only. Colossus transcripts are treated as login-gated unless a public transcript is on the page."
     },
     {
@@ -92,6 +98,7 @@
       "site": "https://www.semianalysis.com/",
       "transcript": "none_known",
       "filter": "semianalysis",
+      "hosts": ["Jordan Nanos", "Doug O'Laughlin"],
       "notes": "Technical semis/infra staff analysis, not a figurehead hunt ground. Short teardown exception: China silicon, InferenceX, or a named teardown."
     },
     {
@@ -103,6 +110,7 @@
       "site": "https://www.latent.space/",
       "transcript": "substack",
       "filter": "latent_space",
+      "hosts": ["swyx", "Alessio", "Shawn Wang"],
       "notes": "Long interviews only; ignore AINews shorts."
     },
     {
@@ -114,6 +122,7 @@
       "site": "https://newsletter.pragmaticengineer.com/podcast",
       "transcript": "substack",
       "filter": "pragmatic_engineer",
+      "hosts": ["Gergely Orosz"],
       "notes": "Enterprise / dev-tool adoption interviews."
     },
     {
@@ -125,6 +134,7 @@
       "site": "https://www.lennysnewsletter.com/podcast",
       "transcript": "substack",
       "filter": "lennys",
+      "hosts": ["Lenny Rachitsky", "Lenny"],
       "notes": "Only when the guest/title is AI-product. Many transcripts are paid-only; mark paywalled instead of bypassing."
     },
     {

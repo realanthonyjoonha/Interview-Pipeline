@@ -5,6 +5,11 @@ from dataclasses import dataclass
 from pathlib import Path
 
 from interview_pipeline.models import Episode, ReportResult, TranscriptResult
+from interview_pipeline.transcripts import (
+    _normalize_speaker_blocks,
+    is_speaker_name,
+    parse_cheeky_transcript,
+)
 
 _MIN_TURNS = 4
 _MIN_CHARS = 800
@@ -48,14 +53,18 @@ class Turn:
 
 
 def parse_turns(transcript: str) -> list[Turn]:
+    normalized = _normalize_speaker_blocks(parse_cheeky_transcript(transcript))
     turns: list[Turn] = []
-    for match in _TURN.finditer(transcript):
+    for match in _TURN.finditer(normalized):
         text = re.sub(r"\s+", " ", match.group("text")).strip()
         if not text:
             continue
+        speaker = match.group("speaker").strip()
+        if not is_speaker_name(speaker):
+            continue
         turns.append(
             Turn(
-                speaker=match.group("speaker").strip(),
+                speaker=speaker,
                 text=text,
                 timestamp=match.group("ts"),
             )

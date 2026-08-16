@@ -64,7 +64,7 @@ def html_to_text(html: str) -> str:
 
 
 def looks_like_transcript(text: str) -> bool:
-    if not text or len(text.strip()) < 400:
+    if not text or len(text.strip()) < 200:
         return False
     speaker_turns = len(re.findall(r"(?m)^(?:\[[^\]]+\]\s*)?[A-Z][\w .'-]{1,40}:\s+\S", text))
     timestamp_turns = len(re.findall(r"(?m)^\[\d{1,2}:\d{2}(?::\d{2})?(?:\.\d+)?\]", text))
@@ -112,19 +112,66 @@ def extract_substack_body_transcript(body_html: str) -> str | None:
     return text if looks_like_transcript(text) else None
 
 
+_SPEAKER_STOP = {
+    "the", "that", "this", "another", "there", "what", "when", "where",
+    "partially", "interesting", "exactly", "right", "yeah", "okay", "ok",
+    "pretty", "high", "way", "could", "makes", "sense", "another",
+    "gpt", "yes", "no", "sure", "thanks", "thank", "got", "it",
+}
+
+
+def is_speaker_name(line: str) -> bool:
+    text = line.strip()
+    if not text or text.endswith((".", "?", "!", ",")):
+        return False
+    if ":" in text:
+        return False
+    words = text.split()
+    if not (1 <= len(words) <= 5):
+        return False
+    for word in words:
+        cleaned = word.strip(".,")
+        if cleaned.lower() in _SPEAKER_STOP:
+            return False
+        if cleaned in {"and", "of", "&"}:
+            continue
+        if not re.match(r"^[A-Z][\w'.-]*$", cleaned):
+            return False
+    return True
+
+
 def _normalize_speaker_blocks(text: str) -> str:
     """Turn 'Name\\nparagraph' blocks into 'Name: paragraph'."""
     lines = [line.strip() for line in text.splitlines()]
     out: list[str] = []
     i = 0
-    name_re = re.compile(r"^[A-Z][\w .'-]{1,50}$")
+    timestamp_name = re.compile(r"^\[(\d{1,2}:\d{2}(?::\d{2})?(?:\.\d+)?)\]\s*(.+)$")
+
+    def next_content(idx: int) -> int:
+        j = idx
+        while j < len(lines) and not lines[j]:
+            j += 1
+        return j
+
     while i < len(lines):
         line = lines[i]
-        if name_re.match(line) and i + 1 < len(lines) and lines[i + 1] and not name_re.match(lines[i + 1]):
-            speaker = line
-            i += 1
+        stamped = timestamp_name.match(line)
+        if stamped:
+            speaker = stamped.group(2).strip()
+            i = next_content(i + 1)
             chunks: list[str] = []
-            while i < len(lines) and lines[i] and not name_re.match(lines[i]):
+            while i < len(lines) and lines[i] and not is_speaker_name(lines[i]) and not timestamp_name.match(lines[i]):
+                chunks.append(lines[i])
+                i += 1
+            if speaker and chunks:
+                out.append(f"{speaker}: {' '.join(chunks)}")
+            continue
+        nxt = next_content(i + 1)
+        if is_speaker_name(line) and nxt < len(lines) and not is_speaker_name(lines[nxt]) and not timestamp_name.match(lines[nxt]):
+            speaker = line
+            i = nxt
+            chunks = []
+            while i < len(lines) and lines[i] and not is_speaker_name(lines[i]) and not timestamp_name.match(lines[i]):
                 if re.match(r"^\d{1,2}:\d{2}:\d{2}", lines[i]):
                     break
                 chunks.append(lines[i])

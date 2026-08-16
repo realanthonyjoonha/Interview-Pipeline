@@ -2,6 +2,7 @@ from interview_pipeline.feeds import parse_duration_seconds, parse_rss
 from interview_pipeline.models import Show
 from interview_pipeline.transcripts import (
     extract_substack_body_transcript,
+    is_speaker_name,
     looks_like_transcript,
     parse_cheeky_transcript,
     substack_segments_to_text,
@@ -70,6 +71,16 @@ def test_extract_substack_body_transcript():
     assert text is not None
     assert "Dwarkesh Patel:" in text
     assert "2031" in text
+
+
+def test_speaker_name_rejects_sentence_fragments():
+    assert is_speaker_name("Ryan Greenblatt") is True
+    assert is_speaker_name("Dwarkesh Patel") is True
+    assert is_speaker_name("Host") is True
+    assert is_speaker_name("That makes sense.") is False
+    assert is_speaker_name("Interesting.") is False
+    assert is_speaker_name("Partially.") is False
+    assert is_speaker_name("Pretty high.") is False
 
 
 def test_substack_segments_to_text():

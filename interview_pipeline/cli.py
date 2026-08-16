@@ -88,6 +88,13 @@ def _cmd_report(args: argparse.Namespace) -> int:
     return 0
 
 
+def _rel(path: Path, root: Path) -> str:
+    try:
+        return str(path.resolve().relative_to(root.resolve()))
+    except ValueError:
+        return str(path)
+
+
 def _parse_since(published: str, since_days: int) -> bool:
     if since_days <= 0 or not published:
         return True
@@ -132,7 +139,7 @@ def _cmd_scan(args: argparse.Namespace) -> int:
             decision = decide(episode, show)
             paths = episode_paths(episode, root)
             rec = episode_record(episode, decision)
-            rec["paths"] = {key: str(path) for key, path in paths.items()}
+            rec["paths"] = {key: _rel(path, root) for key, path in paths.items()}
 
             if not decision.matched:
                 print(f"  skip  {episode.published}  {episode.title[:90]}")
@@ -152,11 +159,11 @@ def _cmd_scan(args: argparse.Namespace) -> int:
             if not args.skip_transcripts:
                 transcript = fetch_official_transcript(episode, show)
                 rec = episode_record(episode, decision, transcript=transcript)
-                rec["paths"] = {key: str(path) for key, path in paths.items()}
+                rec["paths"] = {key: _rel(path, root) for key, path in paths.items()}
                 print(f"         transcript: {transcript.status} ({transcript.detail or transcript.source_kind})")
                 if transcript.found and transcript.text:
                     write_text(paths["transcript"], transcript.text)
-                    rec["transcript"]["path"] = str(paths["transcript"])
+                    rec["transcript"]["path"] = _rel(paths["transcript"], root)
                 if args.no_report:
                     pass
                 else:
@@ -168,7 +175,7 @@ def _cmd_scan(args: argparse.Namespace) -> int:
                     )
                     rec["report"] = {
                         "written": report.written,
-                        "path": report.path,
+                        "path": _rel(Path(report.path), root) if report.path else None,
                         "reason": report.reason,
                     }
                     if report.written:

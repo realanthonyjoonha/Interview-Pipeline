@@ -1,0 +1,24 @@
+{
+  "id": "no_priors/2026-08-06-chasing-trillion-dollar-companies-founder-ambition-token-budgets-and-regulatory",
+  "show_id": "no_priors",
+  "show_name": "No Priors",
+  "title": "Chasing Trillion-Dollar Companies, Founder Ambition, Token Budgets, and Regulatory Capture with Sarah & Elad",
+  "published": "2026-08-06",
+  "url": "",
+  "guid": "17b96322-915c-11f1-aad7-53d361bc6996",
+  "duration_seconds": 2369,
+  "duration_minutes": 39.5,
+  "watched_people": [],
+  "filter": {
+    "matched": false,
+    "reasons": [
+      "No Priors: skip host-only under 45"
+    ],
+    "guest_hint": null
+  },
+  "paths": {
+    "episode": "data/episodes/no_priors/2026-08-06-chasing-trillion-dollar-companies-founder-ambition-token-budgets-and-regulatory.json",
+    "transcript": "data/transcripts/no_priors/2026-08-06-chasing-trillion-dollar-companies-founder-ambition-token-budgets-and-regulatory.md",
+    "report": "data/reports/no_priors/2026-08-06-chasing-trillion-dollar-companies-founder-ambition-token-budgets-and-regulatory.md"
+  }
+}

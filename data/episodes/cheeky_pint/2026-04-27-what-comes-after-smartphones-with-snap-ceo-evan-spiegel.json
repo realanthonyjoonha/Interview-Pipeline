@@ -1,0 +1,37 @@
+{
+  "id": "cheeky_pint/2026-04-27-what-comes-after-smartphones-with-snap-ceo-evan-spiegel",
+  "show_id": "cheeky_pint",
+  "show_name": "Cheeky Pint",
+  "title": "What comes after smartphones, with Snap CEO Evan Spiegel",
+  "published": "2026-04-27",
+  "url": "https://share.transistor.fm/s/6b6fe1af",
+  "guid": "0a51ed83-2449-4451-a3c6-34802aeee3d9",
+  "duration_seconds": 3746,
+  "duration_minutes": 62.4,
+  "watched_people": [],
+  "filter": {
+    "matched": true,
+    "reasons": [
+      "Cheeky Pint founder sit"
+    ],
+    "guest_hint": "Snap CEO Evan Spiegel"
+  },
+  "transcript": {
+    "status": "found",
+    "source_url": "https://share.transistor.fm/s/6b6fe1af/transcript.txt",
+    "source_kind": "rss_transcript",
+    "detail": "Official podcast:transcript from the show RSS feed",
+    "character_count": 72961,
+    "path": "data/transcripts/cheeky_pint/2026-04-27-what-comes-after-smartphones-with-snap-ceo-evan-spiegel.md"
+  },
+  "paths": {
+    "episode": "data/episodes/cheeky_pint/2026-04-27-what-comes-after-smartphones-with-snap-ceo-evan-spiegel.json",
+    "transcript": "data/transcripts/cheeky_pint/2026-04-27-what-comes-after-smartphones-with-snap-ceo-evan-spiegel.md",
+    "report": "data/reports/cheeky_pint/2026-04-27-what-comes-after-smartphones-with-snap-ceo-evan-spiegel.md"
+  },
+  "report": {
+    "written": true,
+    "path": "data/reports/cheeky_pint/2026-04-27-what-comes-after-smartphones-with-snap-ceo-evan-spiegel.md",
+    "reason": null
+  }
+}

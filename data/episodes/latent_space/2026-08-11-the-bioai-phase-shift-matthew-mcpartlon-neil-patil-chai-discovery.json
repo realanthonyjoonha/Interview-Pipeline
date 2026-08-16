@@ -1,0 +1,37 @@
+{
+  "id": "latent_space/2026-08-11-the-bioai-phase-shift-matthew-mcpartlon-neil-patil-chai-discovery",
+  "show_id": "latent_space",
+  "show_name": "Latent Space",
+  "title": "🔬The BioAI Phase Shift - Matthew McPartlon & Neil Patil, Chai Discovery",
+  "published": "2026-08-11",
+  "url": "https://www.latent.space/p/chai-discovery",
+  "guid": "substack:post:209779219",
+  "duration_seconds": 5719,
+  "duration_minutes": 95.3,
+  "watched_people": [],
+  "filter": {
+    "matched": true,
+    "reasons": [
+      "Latent Space long interview"
+    ],
+    "guest_hint": "Chai AI"
+  },
+  "transcript": {
+    "status": "found",
+    "source_url": "https://www.latent.space/p/chai-discovery",
+    "source_kind": "substack_player",
+    "detail": "Official Substack player transcription on a public post",
+    "character_count": 101328,
+    "path": "data/transcripts/latent_space/2026-08-11-the-bioai-phase-shift-matthew-mcpartlon-neil-patil-chai-discovery.md"
+  },
+  "paths": {
+    "episode": "data/episodes/latent_space/2026-08-11-the-bioai-phase-shift-matthew-mcpartlon-neil-patil-chai-discovery.json",
+    "transcript": "data/transcripts/latent_space/2026-08-11-the-bioai-phase-shift-matthew-mcpartlon-neil-patil-chai-discovery.md",
+    "report": "data/reports/latent_space/2026-08-11-the-bioai-phase-shift-matthew-mcpartlon-neil-patil-chai-discovery.md"
+  },
+  "report": {
+    "written": true,
+    "path": "data/reports/latent_space/2026-08-11-the-bioai-phase-shift-matthew-mcpartlon-neil-patil-chai-discovery.md",
+    "reason": null
+  }
+}

@@ -2,7 +2,7 @@ from interview_pipeline.filters import decide, extract_guest_hint
 from interview_pipeline.models import Episode, Show
 
 
-def _show(filter_name: str, show_id: str = "test") -> Show:
+def _show(filter_name: str, show_id: str = "test", hosts: tuple[str, ...] = ()) -> Show:
     return Show(
         id=show_id,
         name="Test show",
@@ -12,6 +12,7 @@ def _show(filter_name: str, show_id: str = "test") -> Show:
         site="",
         transcript="none_known",
         filter=filter_name,
+        hosts=hosts,
     )
 
 
@@ -49,10 +50,18 @@ def test_dwarkesh_keeps_long_interview():
 
 
 def test_no_priors_skips_host_only_under_45():
+    hosts = ("Sarah Guo", "Elad Gil", "Sarah", "Elad")
     host_only = _ep("Chasing Trillion-Dollar Companies, Founder Ambition, Token Budgets", 2369)
-    decision = decide(host_only, _show("no_priors"))
+    decision = decide(host_only, _show("no_priors", hosts=hosts))
     assert decision.matched is False
     assert any("host-only under 45" in reason for reason in decision.reasons)
+    named_hosts = _ep(
+        "Chasing Trillion-Dollar Companies, Founder Ambition, Token Budgets, and Regulatory Capture with Sarah & Elad",
+        2369,
+    )
+    decision = decide(named_hosts, _show("no_priors", hosts=hosts))
+    assert decision.matched is False
+    assert decision.guest_hint is None
 
 
 def test_no_priors_keeps_guest_sit():

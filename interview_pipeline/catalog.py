@@ -53,6 +53,7 @@ def shows(
             transcript=raw.get("transcript") or "none_known",
             filter=raw.get("filter") or "length_only",
             notes=raw.get("notes") or "",
+            hosts=tuple(raw.get("hosts") or ()),
         )
         if show_id and show.id != show_id:
             continue

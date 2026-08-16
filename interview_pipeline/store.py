@@ -32,7 +32,7 @@ def write_text(path: Path, text: str) -> Path:
 
 
 def write_scan_summary(rows: list[dict], root: Path | None = None) -> Path:
-    stamp = datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%SZ")
+    stamp = datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%S%fZ")
     path = data_dir(root or repo_root()) / "scans" / f"{stamp}.json"
     write_json(
         path,

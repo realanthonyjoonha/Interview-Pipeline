@@ -15,6 +15,7 @@ class Show:
     transcript: str
     filter: str
     notes: str = ""
+    hosts: tuple[str, ...] = ()
 
 
 @dataclass

@@ -1,9 +1,20 @@
 from pathlib import Path
 
 from interview_pipeline.models import Episode, TranscriptResult
-from interview_pipeline.reports import build_report_markdown, is_usable_transcript, write_report
+from interview_pipeline.reports import build_report_markdown, is_usable_transcript, parse_turns, write_report
 
 FIXTURE = Path(__file__).parent / "fixtures" / "sample_transcript.md"
+
+
+def test_parse_turns_ignores_colon_sentence_fragments():
+    text = (
+        "Ryan Greenblatt: Full automation of AI R&D is around 2031.\n\n"
+        "Another way to put this is: we do not have the data mix yet.\n\n"
+        "Dwarkesh Patel: That number is a median, not a point forecast.\n\n"
+        "Host: Thanks for walking through the caveat.\n"
+    )
+    speakers = {turn.speaker for turn in parse_turns(text)}
+    assert speakers == {"Ryan Greenblatt", "Dwarkesh Patel", "Host"}
 
 
 def test_fixture_transcript_is_usable():

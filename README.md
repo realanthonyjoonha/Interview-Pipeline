@@ -69,6 +69,8 @@ python3 -m interview_pipeline scan --tier core --since 21 --limit 8 --max-matche
 
 Episode JSON always gets written. A report is written only when an official transcript was fetched and parsed into speaker turns.
 
+Example artifacts from a 2026-08-16 local scan of Dwarkesh, Cheeky Pint, Latent Space, and No Priors are already under `data/`. No Priors matches show `transcript.status = missing` and have no report files.
+
 Write a report from a local official transcript (or the test fixture):
 
 ```bash

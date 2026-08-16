@@ -21,7 +21,7 @@ _GUEST_PIPE = re.compile(
     r"\|\s*([A-Z][\w'.-]+(?:\s+[A-Z][\w'.-]+){0,5})"
 )
 _ROLE_GUEST = re.compile(
-    r"\b(?:CEO|CPO|CTO|CPTO|founder|co-founder|head of)\s+([A-Z][\w'.-]+(?:\s+[A-Z][\w'.-]+){0,3})",
+    r"\b(?:CEO|CPO|CTO|CPTO|co-founder|founder|head of)\s+([A-Z][\w'.-]+\s+[A-Z][\w'.-]+(?:\s+[A-Z][\w'.-]+){0,2})",
     re.I,
 )
 
@@ -66,20 +66,46 @@ _HOST_ONLY_HINTS = re.compile(
 )
 
 
-def extract_guest_hint(title: str, description: str = "") -> str | None:
+def extract_guest_hint(
+    title: str,
+    description: str = "",
+    hosts: tuple[str, ...] = (),
+) -> str | None:
     blob = title.strip()
+    guest = None
     for pattern in (_GUEST_WITH, _GUEST_JOINS, _GUEST_DASH, _GUEST_PIPE):
         match = pattern.search(blob)
         if match:
-            return _clean_guest(match.group(1))
-    role = _ROLE_GUEST.search(blob)
-    if role:
-        return _clean_guest(role.group(0))
-    # Description fallback: "X joins ..."
-    desc_match = _GUEST_JOINS.search(description) or _GUEST_WITH.search(description)
-    if desc_match:
-        return _clean_guest(desc_match.group(1))
-    return None
+            guest = _clean_guest(match.group(1))
+            break
+    if guest is None:
+        role = _ROLE_GUEST.search(blob)
+        if role:
+            guest = _clean_guest(role.group(0))
+    if guest is None:
+        desc_match = _GUEST_JOINS.search(description) or _GUEST_WITH.search(description)
+        if desc_match:
+            guest = _clean_guest(desc_match.group(1))
+    if guest and _is_only_hosts(guest, hosts):
+        return None
+    return guest
+
+
+def _is_only_hosts(guest: str, hosts: tuple[str, ...]) -> bool:
+    if not hosts:
+        return False
+    parts = [part.strip() for part in re.split(r"\s*(?:&|and|,|/)\s*", guest) if part.strip()]
+    if not parts:
+        return False
+    host_l = {host.lower() for host in hosts}
+    for part in parts:
+        lowered = part.lower()
+        if lowered in host_l:
+            continue
+        if any(lowered == host or lowered in host.split() for host in host_l):
+            continue
+        return False
+    return True
 
 
 def _clean_guest(value: str) -> str:
@@ -115,7 +141,7 @@ def decide(episode: Episode, show: Show, *, min_minutes: int | None = None) -> F
         "lennys": _lennys,
         "length_only": _length_only,
     }.get(show.filter, _length_only)
-    return handler(episode, bar)
+    return handler(episode, bar, show.hosts)
 
 
 def _ok(reasons: list[str], guest: str | None = None) -> FilterDecision:
@@ -126,8 +152,12 @@ def _skip(reasons: list[str], guest: str | None = None) -> FilterDecision:
     return FilterDecision(False, tuple(reasons), guest)
 
 
-def _dwarkesh(episode: Episode, bar: float) -> FilterDecision:
-    guest = extract_guest_hint(episode.title, episode.description)
+def _guest(episode: Episode, hosts: tuple[str, ...] = ()) -> str | None:
+    return extract_guest_hint(episode.title, episode.description, hosts)
+
+
+def _dwarkesh(episode: Episode, bar: float, hosts: tuple[str, ...] = ()) -> FilterDecision:
+    guest = _guest(episode, hosts)
     minutes = _minutes(episode)
     essay = bool(_ESSAY_HINTS.search(episode.title) or _ESSAY_HINTS.search(episode.description[:400]))
     if minutes is not None and minutes < DWARKESH_ESSAY_MAX_MINUTES:
@@ -142,8 +172,8 @@ def _dwarkesh(episode: Episode, bar: float) -> FilterDecision:
     return _ok(["Dwarkesh interview"], guest)
 
 
-def _cheeky_pint(episode: Episode, bar: float) -> FilterDecision:
-    guest = extract_guest_hint(episode.title, episode.description)
+def _cheeky_pint(episode: Episode, bar: float, hosts: tuple[str, ...] = ()) -> FilterDecision:
+    guest = _guest(episode, hosts)
     if not guest:
         return _skip(["Cheeky Pint: founder sit required; no guest in title"])
     if _too_short(episode, bar, allow_unknown=True):
@@ -151,8 +181,8 @@ def _cheeky_pint(episode: Episode, bar: float) -> FilterDecision:
     return _ok(["Cheeky Pint founder sit"], guest)
 
 
-def _no_priors(episode: Episode, bar: float) -> FilterDecision:
-    guest = extract_guest_hint(episode.title, episode.description)
+def _no_priors(episode: Episode, bar: float, hosts: tuple[str, ...] = ()) -> FilterDecision:
+    guest = _guest(episode, hosts)
     minutes = _minutes(episode)
     host_only = bool(_HOST_ONLY_HINTS.search(episode.title)) or not guest
     if host_only and (minutes is None or minutes < bar):
@@ -162,15 +192,15 @@ def _no_priors(episode: Episode, bar: float) -> FilterDecision:
     return _ok([f"No Priors host conversation at {minutes:.0f} min (>= 45)"], guest)
 
 
-def _bg2(episode: Episode, bar: float) -> FilterDecision:
-    guest = extract_guest_hint(episode.title, episode.description)
+def _bg2(episode: Episode, bar: float, hosts: tuple[str, ...] = ()) -> FilterDecision:
+    guest = _guest(episode, hosts)
     if _too_short(episode, bar, allow_unknown=True):
         return _skip([f"BG2 under {bar:.0f} min"], guest)
     return _ok(["BG2 episode over length bar"], guest)
 
 
-def _big_technology(episode: Episode, bar: float) -> FilterDecision:
-    guest = extract_guest_hint(episode.title, episode.description)
+def _big_technology(episode: Episode, bar: float, hosts: tuple[str, ...] = ()) -> FilterDecision:
+    guest = _guest(episode, hosts)
     title = episode.title
     if _NEWS_ROUNDTABLE.search(title):
         return _skip(["Big Technology: skip news roundtables"], guest)
@@ -183,8 +213,8 @@ def _big_technology(episode: Episode, bar: float) -> FilterDecision:
     return _ok(["Big Technology named guest interview"], guest)
 
 
-def _iltb(episode: Episode, bar: float) -> FilterDecision:
-    guest = extract_guest_hint(episode.title, episode.description)
+def _iltb(episode: Episode, bar: float, hosts: tuple[str, ...] = ()) -> FilterDecision:
+    guest = _guest(episode, hosts)
     blob = f"{episode.title}\n{episode.description[:800]}"
     if not _ILTB_TOPIC.search(blob):
         return _skip(["Invest Like the Best: not an AI / infra / chip / lab guest"], guest)
@@ -193,8 +223,8 @@ def _iltb(episode: Episode, bar: float) -> FilterDecision:
     return _ok(["Invest Like the Best AI/infra/chip/lab guest"], guest)
 
 
-def _semianalysis(episode: Episode, bar: float) -> FilterDecision:
-    guest = extract_guest_hint(episode.title, episode.description)
+def _semianalysis(episode: Episode, bar: float, hosts: tuple[str, ...] = ()) -> FilterDecision:
+    guest = _guest(episode, hosts)
     minutes = _minutes(episode)
     blob = f"{episode.title}\n{episode.description[:600]}"
     short_ok = bool(_SEMI_SHORT_OK.search(blob))
@@ -209,8 +239,8 @@ def _semianalysis(episode: Episode, bar: float) -> FilterDecision:
     return _ok([reason], guest)
 
 
-def _latent_space(episode: Episode, bar: float) -> FilterDecision:
-    guest = extract_guest_hint(episode.title, episode.description)
+def _latent_space(episode: Episode, bar: float, hosts: tuple[str, ...] = ()) -> FilterDecision:
+    guest = _guest(episode, hosts)
     title = episode.title
     if _AINEWS.search(title) or title.strip().lower().startswith("ainews"):
         return _skip(["Latent Space: ignore AINews shorts"], guest)
@@ -223,8 +253,8 @@ def _latent_space(episode: Episode, bar: float) -> FilterDecision:
     return _ok(["Latent Space long interview"], guest)
 
 
-def _pragmatic_engineer(episode: Episode, bar: float) -> FilterDecision:
-    guest = extract_guest_hint(episode.title, episode.description)
+def _pragmatic_engineer(episode: Episode, bar: float, hosts: tuple[str, ...] = ()) -> FilterDecision:
+    guest = _guest(episode, hosts)
     if _AMA_ONLY.search(episode.title) and not guest:
         return _skip(["Pragmatic Engineer: skip host AMA without a guest"], guest)
     if not guest:
@@ -237,8 +267,8 @@ def _pragmatic_engineer(episode: Episode, bar: float) -> FilterDecision:
     return _ok(["Pragmatic Engineer enterprise/dev-tool interview"], guest)
 
 
-def _lennys(episode: Episode, bar: float) -> FilterDecision:
-    guest = extract_guest_hint(episode.title, episode.description)
+def _lennys(episode: Episode, bar: float, hosts: tuple[str, ...] = ()) -> FilterDecision:
+    guest = _guest(episode, hosts)
     blob = f"{episode.title}\n{episode.description[:600]}"
     if not _LENNY_AI_PRODUCT.search(blob):
         return _skip(["Lenny's: guest/title is not AI-product"], guest)
@@ -247,8 +277,8 @@ def _lennys(episode: Episode, bar: float) -> FilterDecision:
     return _ok(["Lenny's AI-product episode"], guest)
 
 
-def _length_only(episode: Episode, bar: float) -> FilterDecision:
-    guest = extract_guest_hint(episode.title, episode.description)
+def _length_only(episode: Episode, bar: float, hosts: tuple[str, ...] = ()) -> FilterDecision:
+    guest = _guest(episode, hosts)
     if _too_short(episode, bar, allow_unknown=True):
         return _skip([f"under {bar:.0f} min length bar"], guest)
     return _ok([f"over {bar:.0f} min length bar"], guest)
