@@ -1,4 +1,4 @@
-from interview_pipeline.catalog import load_catalog, shows, watched_people
+from interview_pipeline.catalog import default_min_minutes, load_catalog, shows, watched_people
 
 LOCKED = (
     "Sam Altman",
@@ -12,6 +12,11 @@ LOCKED = (
     "Ilya Sutskever",
     "Andrej Karpathy",
 )
+
+
+def test_default_length_bar_is_20_minutes():
+    assert default_min_minutes() == 20
+    assert load_catalog()["defaults"]["min_minutes"] == 20
 
 
 def test_watched_people_are_exactly_the_locked_list():

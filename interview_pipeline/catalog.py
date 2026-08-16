@@ -22,7 +22,7 @@ def watched_people(catalog: dict | None = None) -> tuple[str, ...]:
 
 def default_min_minutes(catalog: dict | None = None) -> int:
     data = catalog or load_catalog()
-    return int((data.get("defaults") or {}).get("min_minutes") or 45)
+    return int((data.get("defaults") or {}).get("min_minutes") or 20)
 
 
 def user_agent(catalog: dict | None = None) -> str:

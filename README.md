@@ -28,8 +28,8 @@ Sam Altman, Dario Amodei, Demis Hassabis, Elon Musk, Satya Nadella, Sundar Picha
 | --- | --- | --- |
 | Dwarkesh Podcast | Interviews only; skip sub-20 min essays | Official Substack page, else audio |
 | Cheeky Pint | Founder sits; quiet since 27 Apr 2026 | Official RSS transcript, else audio |
-| No Priors | Guest sit or 45+; skip host-only under 45 | Usually audio-derived |
-| BG2 | Irregular; 45+ min bar | Usually audio-derived |
+| No Priors | Guest sit or 20+; skip host-only under 20 | Usually audio-derived |
+| BG2 | Irregular; 20+ min bar | Usually audio-derived |
 | Big Technology | Named guest interviews; skip news roundtables | Usually audio-derived |
 | Invest Like the Best | AI / infra / chip / lab guests only | Colossus not scraped; audio fallback |
 | SemiAnalysis Weekly | Staff semis/infra analysis, not a figurehead hunt | Usually audio-derived |
@@ -37,7 +37,7 @@ Sam Altman, Dario Amodei, Demis Hassabis, Elon Musk, Satya Nadella, Sundar Picha
 | The Pragmatic Engineer | Enterprise / dev-tool adoption interviews | Official Substack, else audio |
 | Lenny’s Podcast | Only when guest/title is AI-product | Paid posts → audio fallback |
 
-Length bar: about 45+ minutes, except SemiAnalysis Weekly shorts about China silicon, InferenceX, or a named teardown.
+Length bar: **20+ minutes**. A 25-minute in-scope sit is a match. SemiAnalysis Weekly numbered episodes count at 20+; the short-teardown exception still applies for China silicon, InferenceX, or a named teardown.
 
 Secondary shows live in `config/shows.json` with `"enabled": false`.
 

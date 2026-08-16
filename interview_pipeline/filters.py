@@ -5,7 +5,7 @@ import re
 from interview_pipeline.catalog import default_min_minutes
 from interview_pipeline.models import Episode, FilterDecision, Show
 
-DEFAULT_MIN_MINUTES = 45
+DEFAULT_MIN_MINUTES = 20
 DWARKESH_ESSAY_MAX_MINUTES = 20
 
 _GUEST_WITH = re.compile(
@@ -167,7 +167,7 @@ def _dwarkesh(episode: Episode, bar: float, hosts: tuple[str, ...] = ()) -> Filt
     if not guest:
         return _skip(["interviews only; no guest name in title"], guest)
     if minutes is not None and minutes < bar:
-        # Interviews over the essay floor still pass; 20–45 min guest sits are rare but allowed.
+        # Interviews over the essay floor still pass; guest sits at 20+ count.
         return _ok([f"Dwarkesh interview ({minutes:.0f} min, guest sit)"], guest)
     return _ok(["Dwarkesh interview"], guest)
 
@@ -186,10 +186,10 @@ def _no_priors(episode: Episode, bar: float, hosts: tuple[str, ...] = ()) -> Fil
     minutes = _minutes(episode)
     host_only = bool(_HOST_ONLY_HINTS.search(episode.title)) or not guest
     if host_only and (minutes is None or minutes < bar):
-        return _skip(["No Priors: skip host-only under 45"], guest)
+        return _skip([f"No Priors: skip host-only under {bar:g}"], guest)
     if guest:
         return _ok(["No Priors guest sit"], guest)
-    return _ok([f"No Priors host conversation at {minutes:.0f} min (>= 45)"], guest)
+    return _ok([f"No Priors host conversation at {minutes:.0f} min (>= {bar:g})"], guest)
 
 
 def _bg2(episode: Episode, bar: float, hosts: tuple[str, ...] = ()) -> FilterDecision:
@@ -230,7 +230,7 @@ def _semianalysis(episode: Episode, bar: float, hosts: tuple[str, ...] = ()) -> 
     short_ok = bool(_SEMI_SHORT_OK.search(blob))
     if minutes is not None and minutes < bar and not short_ok:
         return _skip(
-            ["SemiAnalysis Weekly under 45 min without China silicon / InferenceX / teardown exception"],
+            [f"SemiAnalysis Weekly under {bar:g} min without China silicon / InferenceX / teardown exception"],
             guest,
         )
     reason = "SemiAnalysis Weekly technical staff analysis"

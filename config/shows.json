@@ -13,7 +13,7 @@
     "Andrej Karpathy"
   ],
   "defaults": {
-    "min_minutes": 45,
+    "min_minutes": 20,
     "user_agent": "InterviewPipeline/0.1 (+https://github.com/realanthonyjoonha/Interview-Pipeline; research notes)"
   },
   "shows": [
@@ -51,7 +51,7 @@
       "transcript": "none_known",
       "filter": "no_priors",
       "hosts": ["Sarah Guo", "Elad Gil", "Sarah", "Elad"],
-      "notes": "Guest sits or 45+; skip host-only under 45. Official text is rare; use audio fallback."
+      "notes": "Guest sits or 20+; skip host-only under 20. Official text is rare; use audio fallback."
     },
     {
       "id": "bg2",

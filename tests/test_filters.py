@@ -49,15 +49,15 @@ def test_dwarkesh_keeps_long_interview():
     assert decision.guest_hint == "Ryan Greenblatt"
 
 
-def test_no_priors_skips_host_only_under_45():
+def test_no_priors_skips_host_only_under_20():
     hosts = ("Sarah Guo", "Elad Gil", "Sarah", "Elad")
-    host_only = _ep("Chasing Trillion-Dollar Companies, Founder Ambition, Token Budgets", 2369)
+    host_only = _ep("Chasing Trillion-Dollar Companies, Founder Ambition, Token Budgets", 15 * 60)
     decision = decide(host_only, _show("no_priors", hosts=hosts))
     assert decision.matched is False
-    assert any("host-only under 45" in reason for reason in decision.reasons)
+    assert any("host-only under 20" in reason for reason in decision.reasons)
     named_hosts = _ep(
         "Chasing Trillion-Dollar Companies, Founder Ambition, Token Budgets, and Regulatory Capture with Sarah & Elad",
-        2369,
+        15 * 60,
     )
     decision = decide(named_hosts, _show("no_priors", hosts=hosts))
     assert decision.matched is False
@@ -71,8 +71,11 @@ def test_no_priors_keeps_guest_sit():
     assert decision.guest_hint and "Melisa" in decision.guest_hint
 
 
-def test_no_priors_keeps_host_only_over_45():
-    long_host = _ep("Host conversation about markets and regulation", 50 * 60)
+def test_no_priors_keeps_host_only_over_20():
+    mid_host = _ep("Chasing Trillion-Dollar Companies, Founder Ambition, Token Budgets", 2369)
+    decision = decide(mid_host, _show("no_priors"))
+    assert decision.matched is True
+    long_host = _ep("Host conversation about markets and regulation", 25 * 60)
     decision = decide(long_host, _show("no_priors"))
     assert decision.matched is True
 
@@ -96,11 +99,13 @@ def test_iltb_requires_ai_infra_chip_or_lab():
 
 
 def test_semianalysis_allows_short_china_or_teardown():
-    short_generic = _ep("Ep. 001 - Weekly notes | Jordan Nanos", 20 * 60)
+    short_generic = _ep("Ep. 001 - Weekly notes | Jordan Nanos", 19 * 60)
     assert decide(short_generic, _show("semianalysis")).matched is False
+    numbered_20_plus = _ep("Ep. 018 - Weekly notes | Jordan Nanos", 25 * 60)
+    assert decide(numbered_20_plus, _show("semianalysis")).matched is True
     short_china = _ep("Emergency: China silicon export controls", 18 * 60)
     assert decide(short_china, _show("semianalysis")).matched is True
-    short_teardown = _ep("Named teardown of InferenceX cluster economics", 22 * 60)
+    short_teardown = _ep("Named teardown of InferenceX cluster economics", 15 * 60)
     assert decide(short_teardown, _show("semianalysis")).matched is True
     long_staff = _ep("Ep. 024 - SpaceX 10GW plan | Reyk Knuhtsen, Jordan Nanos", 50 * 60)
     assert decide(long_staff, _show("semianalysis")).matched is True
@@ -109,10 +114,12 @@ def test_semianalysis_allows_short_china_or_teardown():
 def test_latent_space_ignores_ainews_and_shorts():
     news = _ep("AINews: Friday paper pile", 12 * 60)
     assert decide(news, _show("latent_space")).matched is False
-    short = _ep("The Inference Engineering Masterclass — Philip Kiely & Ali Taha, Baseten", 20 * 60)
+    short = _ep("The Inference Engineering Masterclass — Philip Kiely & Ali Taha, Baseten", 15 * 60)
     assert decide(short, _show("latent_space")).matched is False
+    mid_interview = _ep("The Inference Engineering Masterclass — Philip Kiely & Ali Taha, Baseten", 25 * 60)
+    assert decide(mid_interview, _show("latent_space")).matched is True
     long_interview = _ep("The Inference Engineering Masterclass — Philip Kiely & Ali Taha, Baseten", 6089)
-    # 6089 seconds is over 45 minutes; guest hint from dash may be the left side.
+    # 6089 seconds is over the 20-minute bar; guest hint from dash may be the left side.
     decision = decide(long_interview, _show("latent_space"))
     assert decision.matched is True
 
@@ -136,8 +143,10 @@ def test_lennys_requires_ai_product():
 def test_cheeky_pint_requires_founder_sit_and_length():
     no_guest = _ep("A quiet week at the pub", 70 * 60)
     assert decide(no_guest, _show("cheeky_pint")).matched is False
-    short = _ep("The world of voice AI, with Mati Staniszewski of ElevenLabs", 20 * 60)
+    short = _ep("The world of voice AI, with Mati Staniszewski of ElevenLabs", 15 * 60)
     assert decide(short, _show("cheeky_pint")).matched is False
+    mid_sit = _ep("The world of voice AI, with Mati Staniszewski of ElevenLabs", 25 * 60)
+    assert decide(mid_sit, _show("cheeky_pint")).matched is True
     founder = _ep("The history and future of AI at Google, with Sundar Pichai", 4163)
     decision = decide(founder, _show("cheeky_pint"))
     assert decision.matched is True
@@ -145,7 +154,16 @@ def test_cheeky_pint_requires_founder_sit_and_length():
 
 
 def test_bg2_uses_length_bar():
-    short = _ep("Quick market check w/ Gavin Baker", 20 * 60)
+    short = _ep("Quick market check w/ Gavin Baker", 15 * 60)
     assert decide(short, _show("bg2")).matched is False
+    mid_ep = _ep("Quick market check w/ Gavin Baker", 25 * 60)
+    assert decide(mid_ep, _show("bg2")).matched is True
     long_ep = _ep("The SpaceX IPO, Fable 5, AI Capex Update w/ Gavin Baker", 80 * 60)
     assert decide(long_ep, _show("bg2")).matched is True
+
+
+def test_twenty_five_minute_in_scope_sit_is_a_match():
+    sit = _ep("The history and future of AI at Google, with Sundar Pichai", 25 * 60)
+    decision = decide(sit, _show("cheeky_pint"))
+    assert decision.matched is True
+    assert decision.guest_hint == "Sundar Pichai"
